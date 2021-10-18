@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moolcalm.mapper.MemberMapper">
+
+	<select id="getList1" resultType="com.moolcalm.domain.InfoVO">
+		<![CDATA[
+			select * from l_info
+		]]>
+	</select>
+	
+	<insert id="insert1">
+		insert into l_info(email, password, now_date, login_count, point)
+		values(#{email},#{password},now(),#{login_count}, #{point})
+	</insert>
+	
+	<select id="read1" resultType="com.moolcalm.domain.InfoVO">
+		select * from l_info where password=#{password}
+	</select>
+	
+	<delete id="delete1">
+		delete from l_info where email=#{email}
+	</delete>
+	
+	<update id="update1">
+	update l_info
+	set password=#{password},
+		now_date=now()
+	where email=#{email}
+	</update>
+</mapper>

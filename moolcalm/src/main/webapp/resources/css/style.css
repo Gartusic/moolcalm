@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+.s_drop li{
+    display: flex;
+}
+.s_drop li input{
+    display: inline-block;
+    margin: 10px 20px 0 0;
+}
+.p_catg{
+    margin: 0 20px;
+}
+.p_catg>a{
+    display: inline-block;
+    padding: 10px;
+    margin: 10px 3px;
+    text-align: center;
+    opacity: 0.5;
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 10px 10px 0 0;
+}
+.p_catg .p_on{
+    transform: scale(1.1);
+    background-color: rgb(230, 241, 245);
+    box-shadow: 10px 3px 5px rgba(0, 0, 0, 0.5);
+    margin: 0 30px;
+    opacity: 1;
+
+}
+.p_cardRow{
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    top: -12px;
+    background-color: rgb(230, 241, 245);
+}
+    
+.p_cardRow .card{
+    height: 45vh;
+    width: 45vw;
+    overflow: hidden;
+}
+.p_cardRow .card-img-top{
+    height: 50%;
+}
+.p_cardRow .col-6{
+    margin-bottom: 20px;
+}

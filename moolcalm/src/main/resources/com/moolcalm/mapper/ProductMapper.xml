@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moolcalm.mapper.ProductMapper">
+
+ 	<select id="getList" resultType="com.moolcalm.domain.ProductVO">
+    	select p_setname,p_path,p_author from product_list
+    	where p_name like '%001'
+	</select>
+	<insert id="buy">
+	  	insert into collection_list(
+	  		email, 
+	  		p_name
+	  	) values (
+	  		#{email},
+	  		#{p_name}
+	  	)
+  	</insert>
+	 <select id="read" resultType="com.moolcalm.domain.ProductVO">
+  select * from product_list where p_setname=#{p_setname} and p_name like '%001'
+  </select>
+<!--   <insert id="buy">
+  	insert into collection_list(email,p_name) values(${email},#{p_name})
+  </insert> 오류남 ㅡㅡ ...-->
+  <!-- <select id="buy" resultType="com.moolcalm.domain.CollectionVO">
+  	SELECT 
+  		E.LAST_NAME "lastName"
+	FROM EMPLOYEES E 
+	JOIN DEPARTMENTS D
+	ON(
+		E.DEPARTMENT_ID = D.DEPARTMENT_ID
+	)
+	WHERE 
+		E.EMPLOYEE_ID = #{employee_id}
+  </select>  -->
+  <!-- 컨트롤 쉬프트 엑스를 누르면 대문자화 되고 와이를 누르면 소문자화  -->
+  <!-- then you have to make another VO for the join query -->
+
+</mapper>
