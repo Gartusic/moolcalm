@@ -20,19 +20,6 @@ import lombok.extern.log4j.Log4j;
 public class MemberController {
 	private MemberService service;
 
-	@GetMapping("list")
-	public void list(Model model) {
-		log.info("list");
-		//                  배열이름, select된 결과물.
-		model.addAttribute("list", service.getList());
-		//return "list";
-	}
-	@GetMapping("read")           //mvc model아님
-	public void read(InfoVO email, Model model) {	
-		log.info("read="+email);
-		model.addAttribute("read", service.get(email));
-	}
-	
 	//글쓰기 화면으로 이동하기 위해 만듦
 	@GetMapping("register")
 	public void register() {	
@@ -43,9 +30,9 @@ public class MemberController {
 	
 	//리턴타입 메소드명             (타입 변수명)
 	//void add            (int a)
-	public String registerPost(InfoVO password, RedirectAttributes rttr) {	
-		log.info("register = " + password);
-		service.register(password); //글쓰기 한 후
+	public String registerPost(InfoVO info, RedirectAttributes rttr) {	
+		log.info("register = " + info);
+		service.register(info); 
 		rttr.addAttribute("password", service.get(password));
 		return "redirect:/board/read"; //board/read.jsp화면이동.
 	}

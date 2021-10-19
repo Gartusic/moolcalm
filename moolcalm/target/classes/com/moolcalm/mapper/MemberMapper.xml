@@ -10,7 +10,7 @@
 		]]>
 	</select>
 	
-	<insert id="insert1">
+	<insert id="insert">
 		insert into l_info(email, password, now_date, login_count, point)
 		values(#{email},#{password},now(),#{login_count}, #{point})
 	</insert>

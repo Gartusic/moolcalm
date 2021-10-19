@@ -26,6 +26,7 @@
 
 		<div class="d-grid gap-2">
 		  <button class="btn btn-primary" type="button">모음집 전체 구매</button>
+		  
 		  <p>전체 가격: </p>
 		  <button class="btn btn-primary" type="button">낱개 구매</button>
 		  <p>낱개 가격: </p>		
