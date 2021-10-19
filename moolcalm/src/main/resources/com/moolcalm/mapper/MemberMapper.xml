@@ -29,4 +29,10 @@
 		now_date=now()
 	where email=#{email}
 	</update>
+	
+	<!-- 출석체크 시에 포인트, 접속횟수를 증가시키고 접속일을 갱신하라는 명령 -->
+<!-- 	<update id="dailycheck">
+		update l_info set point=point + 100 and login_count = login_count + 1
+		and now_date = now() where email= #{email}
+	</update> -->
 </mapper>
