@@ -1,0 +1,58 @@
+@charset "utf-8";
+/* 여백 */
+.f_top{
+  padding-top: 10px;
+}
+
+.f_width_center{
+  width: 300px;
+  margin: 0 auto;
+}
+
+.f_bottom_margin{
+  margin-bottom: 10px;
+}
+/* -------------------- */
+
+/* 개체너비 */
+.f_m_space_md{
+  width: 300px;
+  height: 80vh;
+}
+/* -------------------- */
+
+/* input */
+.f_btn_grey{
+  cursor: pointer;
+
+  width: 55px;
+  height: 35px;
+  background-color: rgb(237, 237, 237);
+  border-radius: 5px;
+  border: 1px solid rgb(237, 237, 237);
+  box-sizing: border-box;
+}
+
+.f_btn_blue{
+  cursor: pointer;
+  opacity: 0.8;
+
+  width: 50px;
+  height: 35px;
+  background-color: rgb(26, 115, 232);
+  border-radius: 5px;
+  border: 1px solid rgb(26, 115, 232);
+  box-sizing: border-box;
+}
+
+.f_input_box{
+  width: 245px;
+  height: 35px;
+
+  border-radius: 5px;
+  border: 1px solid rgb(237, 237, 237);
+  box-sizing: border-box;
+}
+
+
+/* -------------------- */

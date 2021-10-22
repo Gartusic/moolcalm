@@ -1,0 +1,47 @@
+@charset "utf-8";
+
+body{
+  background-color: lightblue;
+}
+
+h2{
+  text-align: center;
+}
+
+details:hover{
+  cursor: pointer;
+}
+
+summary,
+.info_point{
+  color: rgb(26, 115, 232);
+  text-align: center;  
+}
+
+.info_list ul{
+  list-style: none;
+
+  text-align: center;
+  
+  font-size: 17px;
+  line-height: 1.4em;
+}
+
+.info_list ul a:hover{
+  font-weight: bold;
+  color: rgb(237, 237, 237);
+
+  border-radius: 5px;
+  border: 1px solid rgb(237, 237, 237);
+
+  box-shadow: 1px 1px 1px rgb(192, 226, 238);
+}
+
+.info_main{
+  width: 300px;
+  margin: 0 auto;
+}
+
+.info_list{
+  width: inherit;
+}

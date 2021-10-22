@@ -1,0 +1,87 @@
+@charset "utf-8";
+
+/* start t_write.html */
+textarea{
+  padding: 20px;
+
+  border-radius: 5px;
+  border: 1px solid rgb(237, 237, 237);
+}
+
+.t_w_btns_box{
+  width: 300px;
+  border: 0;  
+}
+
+.t_w_btns{  
+  transform: translate(55px, 10px);  
+  width: inherit;
+
+  display: flex;
+  justify-content: center;
+}
+
+.t_w_btn{
+  margin-left: 10px;
+}
+/* end t_write.html */
+/* ******************************* */
+/* start t_table.html */
+
+.column{
+  column-count: 3;  
+  column-width: 200px;
+  column-gap: 10px;
+}
+
+.t_header,
+.t_footer{
+  padding-right: 10px;
+}
+
+.t_header{
+  text-align: right;
+}
+
+.id::after{
+  content: " / ";
+}
+
+.t_list ol li{
+  margin-right: 35px;
+  display: inline-block;
+
+  border-radius: 5px;
+  border: 1px solid lightblue;
+}
+
+.t_list ol li::marker{
+  color: lightblue;
+  font-weight: bold;
+}
+
+.t_list ol hr{
+  border: 1px solid lightblue;
+}
+
+.t_opinion{
+  padding-left: 10px;
+}
+
+.t_footer{
+  display: flex;
+  justify-content: right;  
+}
+
+.t_btn{
+  margin-left: 10px;
+
+  border: 0;
+  background-color: transparent;
+}
+
+.t_btn:hover{
+  cursor: pointer;
+}
+
+/* end t_table.html */
