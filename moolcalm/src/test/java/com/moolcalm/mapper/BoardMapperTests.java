@@ -27,7 +27,6 @@ public class BoardMapperTests {
 		R_configVO board=new R_configVO();
 		board.setEmail("1111");
 		board.setR_content("새로 작성하는 내용");
-		board.setR_star(1);
 		
 		mapper.insert(board);
 		
@@ -38,7 +37,6 @@ public class BoardMapperTests {
 		R_configVO board=new R_configVO();
 		board.setEmail("1111");
 		board.setR_content("새로 작성하는 내용");
-		board.setR_star(1);
 		
 		mapper.insertSelectKey(board);
 		
@@ -59,7 +57,6 @@ public class BoardMapperTests {
 		R_configVO board=new R_configVO();
 		board.setEmail("1111");
 		board.setR_content("새로 수정하는 내용");
-		board.setR_star(1);
 		
 		int count=mapper.update(board);
 		log.info("UPDATE COUNT : "+count);

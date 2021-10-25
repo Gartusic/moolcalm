@@ -18,25 +18,25 @@
     <section class="wrap">
         <div class="f_width_center">
             <h2>LOGIN</h2>
-            <form action="" method="POST" class="f_width_center">
+            <form action="login" method="get" class="f_width_center">
               <fieldset class="f_width_center">
 <h2 class="hide">이메일 입력란입니다.</h2> 
                   <label><span class="h3">E-mail</span><br>
-                    <input type="email" class="L_login_text f_input_box" autofocus placeholder="email">
+                    <input name="email" type="email" class="L_login_text f_input_box" autofocus placeholder="email">
                   </label>
                   <br>
 <h2 class="hide">비밀번호 입력란입니다.</h2> 
                   <label><span class="h3">Password</span><br>
-                  <input type="password" class="L_login_text f_input_box" placeholder="password">
+                  <input name="password" type="password" class="L_login_text f_input_box" placeholder="password">
                   </label>
               </fieldset>
               <br class="f_login_line_space">
               <fieldset class="L_login_btn_sort">
                   <button type="submit" class="f_btn_grey">로그인</button>
-                  <a href="javascript:void(1);" onclick="window.open('./join.jsp', 'join', 'top=250, left=550, width=500, height=550, status=no, menubar=no, toolbar=no, resizable=no');">    
+                  <a href="${path}/views/member/email_check.jsp"></a>    
                     <input type="button" class="f_btn_grey" value="가입">
                   </a>
-                  <a href="javascript:void(1);" onclick="window.open('./find_password.jsp', 'find_password', 'top=250, left=550, width=500, height=550, status=no, menubar=no, toolbar=no, resizable=no');">     
+                  <a href=""></a>     
                   <input type="button" class="f_btn_grey" value="비밀번호">
                   </a>
               </fieldset>

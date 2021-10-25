@@ -30,7 +30,6 @@ public class BoardServiceTests {
 		R_configVO board=new R_configVO();
 		board.setEmail("1111");
 		board.setR_content("새로 작성하는 내용");
-		board.setR_star(1);
 		
 		service.register(board);
 		
@@ -49,12 +48,11 @@ public class BoardServiceTests {
 		R_configVO board=new R_configVO();
 		board.setEmail("1111");
 		board.setR_content("새로 수정하는 내용");
-		board.setR_star(1);
 		
 		log.info("MODIFY RESULT : "+service.modify(board));
 	}
 	@Test
 	public void testDelete() {
-		log.info("REMOVE RESULT : "+service.remove(2L));
+		//log.info("REMOVE RESULT : "+service.remove(2L));
 	}
 }

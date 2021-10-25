@@ -10,5 +10,4 @@ public class R_configVO {
 	private String email;
 	private Date r_date;
 	private String r_content;
-	private int r_star;
 }

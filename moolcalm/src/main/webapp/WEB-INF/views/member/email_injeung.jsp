@@ -1,42 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Email</title>
+	<style>
+	body{
+		width: 500px;
+		margin: 0 auto;
+	}
+
+	div{
+		margin-left: 10px;
+	}
+
+	div,
+	button{
+		margin-left: 50%;
+		transform: translateX(-50%);
+	}
+
+	input{
+		width: 80px;
+	}
+
+	button{
+		width: 80px;
+		height: 30px;
+	}
+	
+	</style>
+
 </head>
+
 <body>
- 
-<table border="1" width="300" height="300" align= "center">
-<center>
-<span style="color: green; font-weight: bold;">입력한 이메일로 받은 인증번호를 입력하세요. (인증번호가 맞아야 다음 단계로 넘어가실 수 있습니다.)</span> <br> <br>    
-        <br> <br>
-        
-        
-        <div style="text-align:center;">
-            <tr>        
-                <td>
-                <center>
-                    <form action="join_injeung${dice}" method="post"> //받아온 인증코드를 컨트롤러로 넘겨서 일치하는지 확인                  
-                    <center>
-                        <br>
-                        <div>
-                            인증번호 입력 : <input type="number" name="email_injeung"
-                                placeholder="  인증번호를 입력하세요. ">
-                        </div>                                        
- 
-                        <br> <br>
-                        <button type="submit" name="submit">인증번호 전송</button>
- 
-                        </div>
-                    </td>
-                </tr>
-                    </center>
-            </table>
-        </form>
-</center>
- 
- 
+	
+<form action="email_injeung${dice}" method="get">
+	<div>
+	<br><br><br><br>
+	인증번호 입력: <input name="email_injeung" type="text" name="email_injeung">
+	<br><br>
+	</div>
+	<button type="submit" name="submit">전송</button>
+
+</form>
 </body>
-</html>
+</html> 

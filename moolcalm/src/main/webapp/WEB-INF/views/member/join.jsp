@@ -17,38 +17,51 @@
 
 <body>
     <section class="wrap">
-        <div class="L_join_contents f_width_center">
+        <main class="L_join_contents f_width_center">
             <h2>회원가입</h2>
-            <form action="" method="POST" class="f_width_center">
-                <fieldset class="f_width_center">
-                  
+            <form action="join" method="get" class="f_width_center">
+                            
 <h2 class="hide">이메일 입력란입니다.</h2> 
                     <label><span class="h3">E-mail</span><br>
                       <input name="email" type="email" class="L_join_text f_input_box" autofocus placeholder="email">
                     </label>
-                    <div class="L_join_explain">사용 가능한 이메일입니다.</div>
+                    <br><br>               
 <h2 class="hide">비밀번호 입력란입니다.</h2> 
                     <label><span class="h3">Password</span><br>
-                      <input name="password" type="password" class="L_join_text f_input_box" placeholder="password">
+                      <input id="pass1" type="password" class="L_join_text f_input_box" placeholder="password">
                     </label>
-                    <div class="L_join_explain f_bottom_margin">영어, 특수문자, 숫자를 사용하세요.</div>
+                    <aside class="L_join_explain f_bottom_margin">영어, 특수문자, 숫자를 사용하세요.</aside>
 <h2 class="hide">비밀번호 확인을 위해 한 번 더 입력바랍니다.</h2> 
                     <label><span class="h3">Verify Password</span><br>
-                      <input type="password" class="L_join_text f_input_box" placeholder="password">
+                      <input id="pass2" type="password" class="L_join_text f_input_box" placeholder="password">
                     </label>
-                    <div class="L_join_explain f_bottom_margin">비밀번호가 일치합니다.</div>
-                                  
-                </fieldset>
+                    <!-- <aside class="L_join_explain f_bottom_margin">비밀번호가 일치합니다.</aside> -->              
+               
                 
-                <fieldset class="L_join_btn_sort ">
-                  <legend>
-                    <button type="submit" class="L_join_verify_email f_btn_grey">인증</button>
-                    <button type="submit" class="f_btn_grey">가입</button>
-                  </legend>
+                 <fieldset class="L_join_btn_sort ">               	<br>
+                                   
+                    <button type="submit" class="f_btn_grey" onclick="pass_check()">가입</button>                  
                 </fieldset>
             </form>
-        </div>
+        </main>
     </section>
-    
-</body>
-</html>
+
+    <script>
+
+    function pass_check() {
+      var p1 = document.getElementById("pass1").value;
+      var p2 = document.getElementById("pass2").value;
+      
+      if(p1==null){
+        alert("비밀번호를 입력해주세요");  
+        return false;       
+      } else if(p1 != p2) {
+        alert("비밀번호가 일치 하지 않습니다");
+        return false;
+      } else{
+        alert("비밀번호가 일치합니다");
+        return true;
+      }
+
+    }
+    </script>

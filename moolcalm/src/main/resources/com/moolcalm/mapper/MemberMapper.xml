@@ -2,55 +2,38 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.moolcalm.mapper.MemberMapper;">
+<mapper namespace="com.moolcalm.mapper.MemberMapper">
     
     <!-- 회원가입 mapper -->
-    <insert id="insert">
-        insert into l_info (email, password, join_date, now_date, login_count, point) 
+    <insert id="join">
+        insert into moolcalm.l_info (email, password, join_date, now_date, login_count, point) 
    		values (#{email}, #{password}, now(), now(), 1, 500);
-    </insert>
-    
-    
-    <!-- 로그인 관련 mapper-->
-    <select id = "login_check" resultType="com.moolcalm.domain.InfoVO">
-        select email from l_info
-        where email=#{email} and password=#{password}
-    </select>
-
-
-    <insert id="insertSelectKey">
-    <selectKey keyProperty="point" order="AFTER" resultType="int">
-        select max(point)+20 point from l_info
-    </selectKey>
-
-        insert into  l_info (email, password, join_date, now_date, login_count, point) 
-        VALUES (#{email}, #{password}, now(), now(), 1, 100);
     </insert>
 
     
     <!-- 비밀번호 찾기 관련 mapper -->
     <select id = "find_pass_check" resultType="com.moolcalm.domain.InfoVO">
-        select password from l_info
+        select password from moolcalm.l_info
         where email=#{email}
     </select>
           
 
     <!-- 비밀번호 변경 관련 mapper -->
     <update id = "pass_change">
-        update l_info set password=#{password} where email=#{email}
+        update moolcalm.l_info set password=#{password} where email=#{email}
     </update>
     
     
     <!-- 이메일 중복확인 관련 mapper-->
     <select id = "email_check" resultType="com.moolcalm.domain.InfoVO">
-        select email from l_info
+        select email from moolcalm.l_info
         where email=#{email}
     </select>    
         
     <!-- 회원 프로필 확인 mapper -->
     <select id = "member_profile" resultType="com.moolcalm.domain.InfoVO">
         select point, email, join_date
-        from l_info
+        from moolcalm.l_info
         where email=#{email}
     </select>      
     

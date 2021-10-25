@@ -19,7 +19,8 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/board")
 public class BoardController {
 	private BoardService service;
-
+	
+ 
 	@GetMapping("t_table")
 	public void list(Model model) {
 		log.info("list");
@@ -30,14 +31,12 @@ public class BoardController {
 		
 	//글쓰기 화면으로 이동하기 위해 만듦
 	@GetMapping("t_write")
-	public void register() {	
-		log.info("register");
+	public void t_write() {	
+		log.info("t_write");
 	}
 	//글쓰기 화면에서 글쓰기 버튼을 클릭했을 때 제목, 내용, 작성자를 처리하기 위해 존재.
-	@PostMapping("register")
-	
-	//리턴타입 메소드명             (타입 변수명)
-	//void add            (int a)
+	//@PostMapping("register")
+	@GetMapping("register")
 	public String registerPost(R_configVO R_config, RedirectAttributes rttr) {	
 		log.info("register = " + R_config);
 		service.register(R_config); //글쓰기 한 후
@@ -62,6 +61,6 @@ public class BoardController {
 	public String remove(long r_num) {
 		log.info("remove"+r_num);
 		service.remove(r_num);
-		return "redirect:/board/t_write";
+		return  "redirect:/board/t_table";
 		}
 }

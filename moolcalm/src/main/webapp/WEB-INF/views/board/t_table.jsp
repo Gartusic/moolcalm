@@ -42,7 +42,7 @@
 	                  </a>
 	                  
 	                  <span>
-	                  <a  href="/board/remove?r_num=${read.r_num}" class="t_btn">삭제</a>
+	                  <a  href="/board/remove?r_num=${boardlist.r_num}" class="t_btn">삭제</a>
 	                  </span>
 	                  
 	                </div>

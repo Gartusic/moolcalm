@@ -1,7 +1,6 @@
-package com.moolcalm.service;
+ package com.moolcalm.service;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,53 +10,42 @@ import com.moolcalm.domain.InfoVO;
 import com.moolcalm.mapper.MemberMapper;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j;
  
+@Log4j
 @Service
 @AllArgsConstructor
 public class MemberServiceImpl implements MemberService{
 	private MemberMapper mapper;
 
-	public void join(Map<String, Object>map,InfoVO vo) {
-		mapper.insert(vo);
+	public void join(InfoVO vo) {	
+		mapper.join(vo);
 	}
-	
-	@Override
-	public void login(InfoVO vo) {
-		mapper.insertSelectKey(vo);		
+
+	public String find_passCheck(InfoVO vo) {
+		
+		return mapper.find_passCheck(vo); 
 	}
 
 	@Override
-	public boolean loginCheck(InfoVO vo, HttpSession session) {
-        boolean check = mapper.loginCheck(vo);
-        if(check) {    //로그인 성공
-            session.setAttribute("password", vo.getPassword());            
-            System.out.println(session.getAttribute("password"));
+	public String pass_change(InfoVO vo)  {
+		return mapper.pass_change(vo);	
+		
+	}
+
+	public boolean email_check(InfoVO vo, HttpSession session) {
+        boolean check = mapper.email_check(vo);
+        if(check) {    //성공
+            session.setAttribute("email", vo.getPassword());            
+           log.info(session.getAttribute("email"));
         }
         
         return check;
 	}
 
-	public String find_passCheck(InfoVO vo) {
-		String password=mapper.find_passCheck(vo);
-		return password;
-	}
-
 	@Override
-	public void pass_change(Map<String, Object> map, InfoVO vo) throws Exception {
-		mapper.pass_change(map, vo);
-		
-	}
-
-	@Override
-	public boolean email_check(String email) throws Exception {
-        boolean check = mapper.email_check(email);
-        
-        return check;
-	}
-
-	@Override
-	public List<InfoVO> member_profile(String email) throws Exception {
-		return mapper.member_profile(email);
+	public List<InfoVO> member_profile(String email){
+		return mapper.member_profile();
 	}
 
 
