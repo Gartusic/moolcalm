@@ -19,22 +19,22 @@
     <section class="wrap">
         <div class="L_join_contents f_width_center">
             <h2>회원가입</h2>
-            <form action="register" method="POST" class="f_width_center">
+            <form action="register" method="post" class="f_width_center">
                 <fieldset class="f_width_center">
                   
 <h2 class="hide">이메일 입력란입니다.</h2> 
                     <label><span class="h3">E-mail</span><br>
-                      <input type="email" name="email" class="L_join_text f_input_box" autofocus placeholder="email">
+                      <input type="email" name="email" value="${email}" class="L_join_text f_input_box" autofocus placeholder="email">
                     </label>
                     <div class="L_join_explain">사용 가능한 이메일입니다.</div>
 <h2 class="hide">비밀번호 입력란입니다.</h2> 
                     <label><span class="h3">Password</span><br>
-                      <input type="password" name="password" class="L_join_text f_input_box" placeholder="password">
+                      <input type="password" name="password" value="${password}" class="L_join_text f_input_box" placeholder="password">
                     </label>
                     <div class="L_join_explain f_bottom_margin">영어, 특수문자, 숫자를 사용하세요.</div>
 <h2 class="hide">비밀번호 확인을 위해 한 번 더 입력바랍니다.</h2> 
                     <label><span class="h3">Verify Password</span><br>
-                      <input type="password" name="password"class="L_join_text f_input_box" placeholder="password">
+                      <input type="password" name="password" value="${password} class="L_join_text f_input_box" placeholder="password">
                     </label>
                     <div class="L_join_explain f_bottom_margin">비밀번호가 일치합니다.</div>
                                   

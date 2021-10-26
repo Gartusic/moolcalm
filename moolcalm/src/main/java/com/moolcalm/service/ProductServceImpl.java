@@ -2,10 +2,13 @@ package com.moolcalm.service;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import com.moolcalm.domain.CollectionVO;
+import com.moolcalm.domain.InfoVO;
 import com.moolcalm.domain.ProductVO;
 import com.moolcalm.mapper.ProductMapper;
 
@@ -22,24 +25,36 @@ public class ProductServceImpl implements ProductService{
 	
 	//구매하기	
 	@Override
-	public void buy(ProductVO product) {
+	public void buy(CollectionVO vo) {
 		log.info("buy");
-		mapper.buy(product);
+		System.out.println(vo.getEmail() + " : " + vo.getP_name());
+		mapper.buy(vo);
 	};
 	
 	@Override
-	//상품 목록리스트
-	public ProductVO get(String p_setname) {
+	//모음집 상세페이지 생성
+	public ProductVO read(String p_setname) {
 		log.info("get"+p_setname);
 		return mapper.read(p_setname);
 	};
 	
 	@Override
-	//상품 목록리스트
+	//모음집 목록 생성
 	public List<ProductVO> getList(){
 		log.info("getList");
 		return mapper.getList();
 	};
-	
+	//상세페이지의 상품 낱개 리스트 생성
+	public List<ProductVO> readList(String p_setname){
+		log.info("readList");
+		return mapper.readList(p_setname);
+	}
+	@Override
+	//상품 모음집 속 상품의 총 갯수
+	public ProductVO readProductCount(String p_setname) {
+		log.info("readProductCount");
+		return mapper.readProductCount(p_setname);
+	};
+
 	
 }

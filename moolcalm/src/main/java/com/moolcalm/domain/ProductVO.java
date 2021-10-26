@@ -11,4 +11,7 @@ public class ProductVO {
 	private int p_price;
 	private String p_path;
 	private String p_info;
+	private int count;
+	private int sum;
+	private int price;
 }
