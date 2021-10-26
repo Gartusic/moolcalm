@@ -13,7 +13,7 @@ public interface MemberService {
 	    
 	    public void pass_change(InfoVO vo);    //비밀번호 변경
 	    	    
-	    public boolean email_check(InfoVO vo, HttpSession session);    //이메일 중복확인을 하는 메소드
+	    public int email_check(String email);    //이메일 중복확인을 하는 메소드
 	     
 	    public List<InfoVO> member_profile(String email);    //회원의 프로필을 볼 수 있는 메소드
 	    

@@ -25,8 +25,8 @@
     
     
     <!-- 이메일 중복확인 관련 mapper-->
-    <select id = "email_check" resultType="com.moolcalm.domain.InfoVO">
-        select email from moolcalm.l_info
+    <select id = "email_check" resultType="int">
+        select count(*) from moolcalm.l_info
         where email=#{email}
     </select>    
         

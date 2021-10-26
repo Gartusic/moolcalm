@@ -16,7 +16,7 @@ public interface MemberMapper {
  
     public void pass_change(InfoVO vo);    //비밀번호 변경
  
-    public boolean email_check(InfoVO vo);    //이메일 중복 확인 
+    public int email_check(String email);    //이메일 중복 확인 
    
     public List<InfoVO> member_profile();    //회원의 프로필 정보를 확인할 수 있는 메소드
 }

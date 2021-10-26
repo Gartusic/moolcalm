@@ -32,13 +32,9 @@ public class MemberServiceImpl implements MemberService{
 		mapper.pass_change(vo);
 	}
 
-	public boolean email_check(InfoVO vo, HttpSession session) {
-        boolean check = mapper.email_check(vo);
-        if(check) {    //¼º°ø
-            session.setAttribute("email", vo.getPassword());            
-           log.info(session.getAttribute("email"));
-        }
-        
+	public int email_check(String email) {
+        int check = mapper.email_check(email);
+        log.info("check="+check);        
         return check;
 	}
 

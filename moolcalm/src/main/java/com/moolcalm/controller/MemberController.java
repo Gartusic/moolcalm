@@ -109,14 +109,30 @@ public class MemberController {
         
         log.info("mv : "+mv);
         session.setAttribute("email", tomail);
+        
+       
         log.info("세션에 저장되어 있는 이메일 : "+session.getAttribute("email"));
         
         response_email.setContentType("text/html; charset=UTF-8");
+        // e-mail이 있으면(회원이라는 얘기)
+        // 로그인 화면으로 이동
+        if(service.email_check(tomail)==1) {
+        	response_email.setContentType("text/html; charset=UTF-8");
+        PrintWriter out_equals = response_email.getWriter();
+        out_equals.println("<script>alert('사용할 수 없는 이메일 입니다. 다른 이메일을 입력해주세요.'); history.go(-1);</script>");
+        out_equals.flush();
+        }else { // e-mail이 없으면(회원이 아니라는 얘기) 인증번호 발송 확인한 후 회원가입 화면에서 비밀번호 입력
+            PrintWriter out_email = response_email.getWriter();
+            out_email.println("<script>alert('이메일이 발송되었습니다. 인증번호를 입력해주세요.');</script>");
+            out_email.flush();
+        }
         
         
-        PrintWriter out_email = response_email.getWriter();
-        out_email.println("<script>alert('이메일이 발송되었습니다. 인증번호를 입력해주세요.');</script>");
-        out_email.flush();
+        
+
+        
+        
+        
         
         
         return mv;
@@ -269,7 +285,10 @@ public ModelAndView join_injeung(String email_injeung, @PathVariable String dice
 		        
 		        session.setAttribute("email", tomail);
 		        log.info("세션에 저장되어 있는 이메일 : "+session.getAttribute("email"));
+		        
+		        
 
+		        
 		        response_email.setContentType("text/html; charset=UTF-8");
 		        PrintWriter out_email = response_email.getWriter();
 		        out_email.println("<script>alert('이메일이 발송되었습니다. 인증번호를 입력해주세요.');</script>");
@@ -277,6 +296,8 @@ public ModelAndView join_injeung(String email_injeung, @PathVariable String dice
 		        
 		        
 		        return mv;
+		        
+		        
 		        
 		    }
 
