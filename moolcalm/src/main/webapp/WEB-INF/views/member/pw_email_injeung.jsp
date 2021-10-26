@@ -42,10 +42,10 @@
 
 <body>
 	
-<form action="join_injeung${dice}" method="post">
+<form action="pw_email_injeung${dice}" method="post">
 	<div>
 	<br><br><br><br>
-	인증번호 입력: <input name="email_injeung" type="text">
+	인증번호 입력: <input type="text" name="pw_email_injeung">
 	<br><br>
 	</div>
 	<button type="submit" name="submit">전송</button>

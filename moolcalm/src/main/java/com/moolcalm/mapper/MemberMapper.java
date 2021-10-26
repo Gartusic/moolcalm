@@ -14,7 +14,7 @@ public interface MemberMapper {
  
     //public void authentication(InfoVO vo);        //소셜 로그인 회원인증 관련 메소드
  
-    public String pass_change(InfoVO vo);    //비밀번호 변경
+    public void pass_change(InfoVO vo);    //비밀번호 변경
  
     public boolean email_check(InfoVO vo);    //이메일 중복 확인 
    

@@ -33,10 +33,10 @@
               <br class="f_login_line_space">
               <fieldset class="L_login_btn_sort">
                   <button type="submit" class="f_btn_grey">로그인</button>
-                  <a href="${path}/views/member/email_check.jsp"></a>    
+                  <a href="${path}/member/email_check">    
                     <input type="button" class="f_btn_grey" value="가입">
                   </a>
-                  <a href=""></a>     
+                  <a href="${path}/member/find_password">    
                   <input type="button" class="f_btn_grey" value="비밀번호">
                   </a>
               </fieldset>

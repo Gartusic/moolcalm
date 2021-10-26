@@ -28,9 +28,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public String pass_change(InfoVO vo)  {
-		return mapper.pass_change(vo);	
-		
+	public void pass_change(InfoVO vo)  {
+		mapper.pass_change(vo);
 	}
 
 	public boolean email_check(InfoVO vo, HttpSession session) {

@@ -41,9 +41,9 @@
 <h2 class="hide">메뉴입니다.</h2>
             <nav class="m_nav">
                 <ul>
-                    <li><a href="${path}/views/member/login.jsp">
+                    <li><a href="${path}/member/login">
                         로그인</a></li>
-                    <li><a href="http://localhost:8080//moolcalm/src/main/webapp/WEB-INF/views/member/member_info.jsp">
+                    <li><a href="member/member_info">
                         mine
                     </a></li>
                     <li><a href=""></a></li>

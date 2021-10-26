@@ -27,15 +27,15 @@
 
       <section class="info_list">
         <ul>
-          <li><a href="javascript:void(11);" onclick="window.open('/member/new_password.jsp', 'new_password', 'top=200, left=500, width=500, height=400, status=no, menubar=no, toolbar=no, resizable=no');">
+          <li><a href="${path}/member/new_password">
             비밀번호 변경하기</a></li>
           <li><a href="">보관함 가기</a></li>
-          <li><a href="javascript:void(11);" onclick="window.open('/board/l_point.jsp', 'l_point', 'top=300, left=600, width=500, height=400, status=no, menubar=no, toolbar=no, resizable=no');">
-            point 내역</a></li>
+          <!-- <li><a href="javascript:void(11);" onclick="window.open('/board/l_point.jsp', 'l_point', 'top=300, left=600, width=500, height=400, status=no, menubar=no, toolbar=no, resizable=no');">
+            point 내역</a></li>  -->
           <li><a href="">내가 쓴 후기</a></li>
           <li style="width: 100px; height: 10px; margin: 5px 0;"></li>
           <li><a href="">회원탈퇴</a></li>
-          <li><a href="javascript:void(12);" onclick="window.open('/board/t_write.jsp', 'opinion', 'top=250, left=550, width=500, height=400, status=no, menubar=no, toolbar=no, resizable=no');">
+          <li><a href="${path}/board/t_write">
             의견제시</a></li>
           <li style="width: 100px; height: 10px; margin: 5px 0;"></li>
           <li><a href="">로그아웃</a></li>

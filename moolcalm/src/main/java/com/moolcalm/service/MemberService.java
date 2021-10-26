@@ -11,7 +11,7 @@ public interface MemberService {
     
 	    public String find_passCheck(InfoVO vo);    //비밀번호 찾기 관련
 	    
-	    public String pass_change(InfoVO vo);    //비밀번호 변경
+	    public void pass_change(InfoVO vo);    //비밀번호 변경
 	    	    
 	    public boolean email_check(InfoVO vo, HttpSession session);    //이메일 중복확인을 하는 메소드
 	     

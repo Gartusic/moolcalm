@@ -3,6 +3,8 @@
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -16,19 +18,24 @@
 </head>
 
 <body>
+
+<script type="text/javascript"> String.prototype.trim = function() { return this.replace(/^\s+|\s+$/g,""); } </script>
+
+
+
     <section class="wrap">
         <main class="L_join_contents f_width_center">
             <h2>회원가입</h2>
-            <form action="join" method="get" class="f_width_center">
+            <form action="join" method="post" class="f_width_center">
                             
-<h2 class="hide">이메일 입력란입니다.</h2> 
+<h2 class="hide">이메일입니다.</h2> 
                     <label><span class="h3">E-mail</span><br>
-                      <input name="email" type="email" class="L_join_text f_input_box" autofocus placeholder="email">
+                      <input id="" value="${email}" name="email" type="text" class="L_join_text f_input_box" autofocus placeholder="email" readonly>
                     </label>
                     <br><br>               
 <h2 class="hide">비밀번호 입력란입니다.</h2> 
                     <label><span class="h3">Password</span><br>
-                      <input id="pass1" type="password" class="L_join_text f_input_box" placeholder="password">
+                      <input id="pass1" name="password" type="password" class="L_join_text f_input_box" placeholder="password" required>
                     </label>
                     <aside class="L_join_explain f_bottom_margin">영어, 특수문자, 숫자를 사용하세요.</aside>
 <h2 class="hide">비밀번호 확인을 위해 한 번 더 입력바랍니다.</h2> 
@@ -40,7 +47,7 @@
                 
                  <fieldset class="L_join_btn_sort ">               	<br>
                                    
-                    <button type="submit" class="f_btn_grey" onclick="pass_check()">가입</button>                  
+                    <button type="submit" class="f_btn_grey" onclick="join_pass_check()">가입</button>                  
                 </fieldset>
             </form>
         </main>
@@ -48,7 +55,7 @@
 
     <script>
 
-    function pass_check() {
+    function join_pass_check() {
       var p1 = document.getElementById("pass1").value;
       var p2 = document.getElementById("pass2").value;
       
@@ -65,3 +72,8 @@
 
     }
     </script>
+    
+   </body>
+</html>   
+      
+  
