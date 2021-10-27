@@ -40,7 +40,7 @@
                     <aside class="L_join_explain f_bottom_margin">영어, 특수문자, 숫자를 사용하세요.</aside>
 <h2 class="hide">비밀번호 확인을 위해 한 번 더 입력바랍니다.</h2> 
                     <label><span class="h3">Verify Password</span><br>
-                      <input id="pass2" type="password" class="L_join_text f_input_box" placeholder="password">
+                      <input id="pass2" name="password_again" type="password" class="L_join_text f_input_box" placeholder="password" required>
                     </label>
                     <!-- <aside class="L_join_explain f_bottom_margin">비밀번호가 일치합니다.</aside> -->              
                

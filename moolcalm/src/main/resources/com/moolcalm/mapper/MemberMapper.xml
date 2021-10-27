@@ -3,8 +3,21 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.moolcalm.mapper.MemberMapper">
-    
-    <!-- 회원가입 mapper -->
+
+
+	<!-- 로그인 -->
+	<select id="login" resultType="com.moolcalm.domain.InfoVO">
+		select email,password from l_info where email=#{email} and password=#{password}
+	</select>
+	
+	<!-- 출석체크 시에 포인트, 접속횟수를 증가시키고 접속일을 갱신하라는 명령 -->
+<!-- 	<update id="dailycheck">
+		update l_info set point=point + 100 and login_count = login_count + 1
+		and now_date = now() where email= #{email}
+	</update> -->
+	
+	
+	<!-- 회원가입 mapper -->
     <insert id="join">
         insert into moolcalm.l_info (email, password, join_date, now_date, login_count, point) 
    		values (#{email}, #{password}, now(), now(), 1, 500);
@@ -35,6 +48,10 @@
         select point, email, join_date
         from moolcalm.l_info
         where email=#{email}
-    </select>      
+    </select> 
     
+    <delete id="info_delete">
+    	delete FROM moolcalm.l_info where email=#{email}
+    </delete> 
+	
 </mapper>

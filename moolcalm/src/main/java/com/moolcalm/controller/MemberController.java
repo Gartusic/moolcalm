@@ -12,10 +12,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,25 +25,54 @@ import com.moolcalm.service.MemberService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-@Log4j
 @Controller
-@RequestMapping("/member/*")
+@Log4j
 @AllArgsConstructor
+@RequestMapping("/member")
 public class MemberController {
-
-    JavaMailSender mailSender;     //메일 서비스를 사용하기 위해 의존성을 주입함.
-    private MemberService service;
+	JavaMailSender mailSender;     //메일 서비스를 사용하기 위해 의존성을 주입함.
+	private MemberService service;
+	
+	//세션로그인테스트
+	@GetMapping("sessionLogin")
+	public void sessionLoginGet() {
+		log.info("로그인 화면으로 이동");
+	}
+	//세션로그인실행테스트
+	@PostMapping("sessionLogin")
+	public String sessionLoginPost(InfoVO member, HttpSession session,HttpServletRequest request) {	
+		log.info("로그인서비스처리");
+		
+		
+		 String yuj_email = request.getParameter("email");
+         session.setAttribute("email", yuj_email); 
+         log.info("yuj_email : "+session.getAttribute("email"));
+		
+		//변수 선언
+		InfoVO info=service.login(member);
+		//service.login에 member라는 매개변수(infoVO의 내용)를 저장하는 info라는 변수
+		session.setAttribute("ssn", info); //세션의 ssn라는 변수에 info를 저장
+		if(session.getAttribute("ssn")!=null) { // ssn가 null이 아니면
+			return "redirect:/"; // main화면으로 이동
+		}else {
+			return "redirect:/member/sessionLogin"; //null이면 다시 로그인화면으로 이동
+		}
+		
+	}// session로그인 끝
+	
+	//로그아웃
+	@PostMapping("logout")
+	public void logoutPost(HttpSession session) {
+		log.info("로그아웃 서비스 처리");
+		session.removeAttribute("ssn");
+		// 또는, session.invalidate(); -> 모든 속성 제거
+	}
     
     
     //member_info.jsp
     @GetMapping("member_info")
 	public void member_info() {
 		log.info("open member_info");
-	}
-
-	@GetMapping("login")
-	public void login() {
-		log.info("HELLO login");
 	}
 	
 	@GetMapping("email_check")
@@ -126,14 +155,7 @@ public class MemberController {
             out_email.println("<script>alert('이메일이 발송되었습니다. 인증번호를 입력해주세요.');</script>");
             out_email.flush();
         }
-        
-        
-        
-
-        
-        
-        
-        
+             
         
         return mv;
         
@@ -216,13 +238,30 @@ public ModelAndView join_injeung(String email_injeung, @PathVariable String dice
 			
 			// 회원가입 post
 			@PostMapping("join")
-			public String postRegister(InfoVO vo) throws Exception {
-				log.info("post register");
+			public String postRegister(InfoVO vo, Model model) throws Exception {
 				
-				service.join(vo);
-				
-				return "redirect:/";
-			}
+		        String result = "";
+		        try {
+		        	log.info("/member/join 요청");
+		        	log.info("EMAIL: " + vo.getEmail());
+		        	log.info("PW: " + vo.getPassword());
+		        	log.info("PW2: " + vo.getPassword_again());
+		            
+		            if(vo.getPassword().equals(vo.getPassword_again())){
+		            	service.join(vo);
+		            	log.info("finish register");
+		                result = "redirect:/";
+		            }
+		            else {
+		                result = "/member/join";
+		            }
+		        } catch (Exception e) {
+		        	log.info(e.getMessage());
+		        }
+		        return result;
+		    }
+
+
 			
 		//비밀번호찾기
 			@GetMapping("find_password")
@@ -385,22 +424,44 @@ public ModelAndView join_injeung(String email_injeung, @PathVariable String dice
 			
 			service.pass_change(vo);
 			
-			return "redirect:/member/login";
+			return "redirect:/member/sessionLogin";
+		}
+		
+		//*********************************************************
+		//회원정보 새로운 비밀번호 입력 페이지 맵핑 메소드
+		@GetMapping("info_new_password")
+		public void info_pw_new_password()  throws Exception{
+			log.info("info_new_password");
+		} 
+				
+		// 새로운 비밀번호 입력
+		@PostMapping("info_new_password")
+		public String info_pass_change(InfoVO vo) throws Exception {
+			log.info("info_pass_change");
+			
+			service.pass_change(vo);
+			
+			return "redirect:/member/member_info";
 		}
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		//회원탈퇴
+		@PostMapping("info_delete")
+		public String info_delete(HttpSession session,  HttpServletResponse response) throws IOException {			 			
+					
+	        	response.setContentType("text/html; charset=UTF-8");
+	        	PrintWriter All_removed = response.getWriter();
+	        	All_removed.println("<script>alert('탈퇴되었습니다. 메인화면으로 이동합니다.'); </script>");
+	        	All_removed.flush();
+	        	
+	        	
+				log.info("login email="+(String)session.getAttribute("email"));			
+				service.info_delete((String)session.getAttribute("email"));			
+				log.info("All_removed");
+
+				return "redirect:/";
+
+		    
+		}
+	
 }

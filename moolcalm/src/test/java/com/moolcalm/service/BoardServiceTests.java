@@ -28,7 +28,7 @@ public class BoardServiceTests {
 	@Test
 	public void tstRegister() {
 		R_configVO board=new R_configVO();
-		board.setEmail("1111");
+		//board.setEmail("1111");
 		board.setR_content("새로 작성하는 내용");
 		
 		service.register(board);
@@ -46,7 +46,7 @@ public class BoardServiceTests {
 	@Test
 	public void testUpdate() {
 		R_configVO board=new R_configVO();
-		board.setEmail("1111");
+		//board.setEmail("1111");
 		board.setR_content("새로 수정하는 내용");
 		
 		log.info("MODIFY RESULT : "+service.modify(board));

@@ -11,7 +11,7 @@ public interface BoardService {
 
 	public boolean modify(R_configVO r_config);
 
-	public void remove(long r_num);
+	public boolean remove(long r_num);
 
 	public List<R_configVO> getList();
 }

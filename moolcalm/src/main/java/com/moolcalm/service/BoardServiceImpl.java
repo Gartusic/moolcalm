@@ -29,9 +29,9 @@ public class BoardServiceImpl implements BoardService {
 		log.info("modify...."+r_config);
 		return mapper.update(r_config)==1;}
 
-	public void remove(long r_num) {
+	public boolean remove(long r_num) {
 		log.info("remove...."+r_num);		
-		mapper.delete(r_num);}
+		return mapper.delete(r_num)==1;}
 
 	public List<R_configVO> getList() {
 		log.info("getregister....");

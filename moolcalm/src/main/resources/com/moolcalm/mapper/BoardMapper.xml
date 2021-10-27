@@ -13,8 +13,8 @@
 	</select>
 	
 	<insert id="insert">
-		insert into r_config(email,r_date,r_content)
-		values(#{email},now(),#{r_content})
+		insert into r_config(email,r_date,r_content, r_star)
+		values(#{email},now(),#{r_content},#{r_star})
 	</insert>
 	
 	<insert id="insertSelectKey">
@@ -22,8 +22,8 @@
 			select max(r_num)+1 r_num from r_config
 		</selectKey>
 		
-		insert into r_config(email,r_date,r_content)
-		values(#{email},now(),#{r_content})
+		insert into r_config(email,r_date,r_content, r_star)
+		values(#{email},now(),#{r_content},#{r_star})
 	</insert>
 	
 	<select id="read" resultType="com.moolcalm.domain.R_configVO">
