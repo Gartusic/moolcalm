@@ -32,6 +32,22 @@
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
+	<!-- Gmail -->
+		  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		    <property name="host" value="smtp.gmail.com" />
+		    <property name="port" value="587" />
+		    <property name="username" value="moolcalm.manage5555@gmail.com" />
+		    <property name="password" value="moolcalm5555" />
+		    <property name="javaMailProperties">
+		    <props>
+		      <prop key="mail.smtp.auth">true</prop>
+		      <prop key="mail.smtp.starttls.enable">true</prop>
+		    </props>
+		    </property>
+		  </bean>
+	
+	
+	
 	
 	<!-- 스프링에게 패키지를 인식시키는 기능. -->
 	<mybatis-spring:scan base-package="com.moolcalm.mapper"/>

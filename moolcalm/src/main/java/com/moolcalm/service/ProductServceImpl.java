@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.moolcalm.domain.CollectionVO;
-import com.moolcalm.domain.InfoVO;
 import com.moolcalm.domain.ProductVO;
 import com.moolcalm.mapper.ProductMapper;
 
@@ -30,6 +29,12 @@ public class ProductServceImpl implements ProductService{
 		System.out.println(vo.getEmail() + " : " + vo.getP_name());
 		mapper.buy(vo);
 	};
+	
+	// 구매중복 확인
+	public int product_check(CollectionVO vo) {
+		log.info("product_check");
+		return mapper.product_check(vo);
+	}
 	
 	@Override
 	//모음집 상세페이지 생성

@@ -21,4 +21,31 @@ public class MemberServiceImpl implements MemberService{
 		log.info("login........"+member);
 		return mapper.login(member);
 	};
+	
+	public void join(InfoVO vo) {	
+		mapper.join(vo);
+	}
+
+	public String find_passCheck(InfoVO vo) {
+		
+		return mapper.find_passCheck(vo); 
+	}
+
+	@Override
+	public void pass_change(InfoVO vo)  {
+		mapper.pass_change(vo);
+	}
+
+	public int email_check(String email) {
+        int check = mapper.email_check(email);
+        log.info("check="+check);
+        return check;
+	}
+
+	@Override
+	public List<InfoVO> member_profile(String email){
+		return mapper.member_profile();
+	}
+
+
 }

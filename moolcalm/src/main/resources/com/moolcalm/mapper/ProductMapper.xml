@@ -11,8 +11,15 @@
     	where p_name like '%001'
 	</select>
 	
+	
+	    <!-- 상품구매 중복확인 관련 mapper-->
+    <select id = "product_check" resultType="int">
+        select count(*) from collection_list
+        where email=#{email} and p_name=#{p_name}
+    </select>
+	
 	<insert id="buy" parameterType="com.moolcalm.domain.CollectionVO">
-	  	insert into collection_list(email, p_name) 
+	  	insert into collection_list(email, p_name)
 	  	values (#{email}, #{p_name})
   	</insert>
   	

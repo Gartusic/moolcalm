@@ -18,24 +18,24 @@
     <section class="wrap">
         <div class="L_find_contents f_width_center">
             <h2>비밀번호 찾기</h2>
-            <form action="" method="POST" class="f_width_center">
+            <form action="find_password" method="post" class="f_width_center">
                 <fieldset class="f_width_center">
                 <legend>
                   <label><span class="h3">E-mail</span><br>
-                    <input type="email" class="L_find_text f_input_box" autofocus placeholder="email">
+                    <input name="email" type="email" class="L_find_text f_input_box" autofocus placeholder="email" required>
                   </label>
-                  <br>
+                  <!-- <br>
                   <label><span class="h3">Verify Number</span><br>
                   <input type="password" class="L_find_text f_input_box" placeholder="인증번호 6자리">
                   </label>
-                  <br>
+                  <br> -->
                 </legend>                 
                 </fieldset>
                 
                 <fieldset class="L_find_btn_sort ">
                   <legend>
                     <button type="submit"class="L_find_verify_email f_btn_grey">인증</button>
-                    <button type="submit" class="f_btn_grey">확인</button>
+                   <!--  <button type="submit" class="f_btn_grey">확인</button> -->
                   </legend>
                 </fieldset>
             </form>

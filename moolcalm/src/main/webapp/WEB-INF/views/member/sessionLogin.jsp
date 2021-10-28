@@ -18,10 +18,10 @@
 		<br class="f_login_line_space">
 		<div>
 			<fieldset class="L_login_btn_sort"><input type="submit" value="로그인"  class="f_btn_grey">
-			<a href="javascript:void(1);" onclick="window.open('./member/register.jsp', 'register', 'top=250, left=550, width=500, height=550, status=no, menubar=no, toolbar=no, resizable=no');">    
+			<a href="${path}/member/email_check">    
                     <input type="button" class="f_btn_grey" value="가입">
                   </a>
-                  <a href="javascript:void(1);" onclick="window.open('./member/find_password.jsp', 'find_password', 'top=250, left=550, width=500, height=550, status=no, menubar=no, toolbar=no, resizable=no');">     
+                  <a href="${path}/member/find_password">    
                   <input type="button" class="f_btn_grey" value="비밀번호">
                   </a>
 			</fieldset>
