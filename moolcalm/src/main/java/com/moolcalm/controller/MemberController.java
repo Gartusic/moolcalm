@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -44,10 +46,13 @@ public class MemberController {
 		log.info("로그인서비스처리");
 		
 		
+		//20211027추가 - yuj
 		 String yuj_email = request.getParameter("email");
          session.setAttribute("email", yuj_email); 
          log.info("yuj_email : "+session.getAttribute("email"));
-		
+         //20211027추가 end
+         
+         
 		//변수 선언
 		InfoVO info=service.login(member);
 		//service.login에 member라는 매개변수(infoVO의 내용)를 저장하는 info라는 변수
@@ -447,21 +452,30 @@ public ModelAndView join_injeung(String email_injeung, @PathVariable String dice
 		
 		//회원탈퇴
 		@PostMapping("info_delete")
-		public String info_delete(HttpSession session,  HttpServletResponse response) throws IOException {			 			
-					
-	        	response.setContentType("text/html; charset=UTF-8");
-	        	PrintWriter All_removed = response.getWriter();
-	        	All_removed.println("<script>alert('탈퇴되었습니다. 메인화면으로 이동합니다.'); </script>");
-	        	All_removed.flush();
+		public String info_delete(HttpServletRequest request, HttpSession session,  HttpServletResponse response) throws IOException, ServletException {			 			
 	        	
+			try {
+				response.setContentType("text/html; charset=UTF-8");
+	        	PrintWriter All_removed = response.getWriter();
+	        	All_removed.println("<script>alert('탈퇴되었습니다. ')</script> </script>");	        	
+	        	//;history.forward(); location.replace=('http://localhost:8080/');
+	        	All_removed.flush();
+
 	        	
 				log.info("login email="+(String)session.getAttribute("email"));			
-				service.info_delete((String)session.getAttribute("email"));			
-				log.info("All_removed");
-
-				return "redirect:/";
-
-		    
+				service.info_delete((String)session.getAttribute("email"));
+				//session.removeAttribute("email");
+				log.info("bye");
+				
+			} catch (Exception e) {
+		           log.info(e);
+			}
+			
+			return "main";
+	    
 		}
+				
+				
+		
 	
 }

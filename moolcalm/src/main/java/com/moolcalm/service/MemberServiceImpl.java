@@ -49,8 +49,6 @@ public class MemberServiceImpl implements MemberService{
 
 	public void info_delete(String email) {
 		mapper.info_delete(email);
-		log.info("service_info_delete");  
-
 	}
 
 

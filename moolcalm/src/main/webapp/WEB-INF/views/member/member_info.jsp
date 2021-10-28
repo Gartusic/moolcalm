@@ -35,16 +35,29 @@
             point 내역</a></li>  -->
           <li><a href="">내가 쓴 후기</a></li>
           <li style="width: 100px; height: 10px; margin: 5px 0;"></li>
-          <li><form action="info_delete" method="post"><button type="submit"
+          <li><form action="info_delete" method="post"><button onclick="all_removed()" type="submit"
           style="border:0;background-color: lightblue;font-size: 17px;line-height: 1.4em;">회원탈퇴</button></form></li>
           <li><a href="${path}/board/t_write">
             의견제시</a></li>
           <li style="width: 100px; height: 10px; margin: 5px 0;"></li>
-          <li><form action="/member/logout" method="post"><button type="submit"
+          <li><form action="/member/logout" method="post"><button id="removed" type="submit"
           style="border:0; background-color: lightblue;font-size: 17px;line-height: 1.4em;">로그아웃</button></form></li>
         </ul>
       </section>    
     </div>
   </section>
+  
+  
+    <script>
+
+    function all_removed() {
+   	  session.removeAttribute("email");
+      alert("탈퇴되셨습니다.");
+      document.getElementById("say_bye").textContent="앞길에 좋은날만 가득하시길 바랍니다.";
+      }
+
+    </script>
+  
+  
 </body>
 </html>
