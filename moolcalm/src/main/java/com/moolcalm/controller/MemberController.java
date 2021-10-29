@@ -464,7 +464,9 @@ public ModelAndView join_injeung(String email_injeung, @PathVariable String dice
 	        	
 				log.info("login email="+(String)session.getAttribute("email"));			
 				service.info_delete((String)session.getAttribute("email"));
-				//session.removeAttribute("email");
+				session.removeAttribute("email");
+				session.removeAttribute("ssn");
+				
 				log.info("bye");
 				
 			} catch (Exception e) {
