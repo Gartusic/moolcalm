@@ -33,9 +33,9 @@
           <li><a href="">보관함 가기</a></li>
           <!-- <li><a href="javascript:void(11);" onclick="window.open('/board/l_point.jsp', 'l_point', 'top=300, left=600, width=500, height=400, status=no, menubar=no, toolbar=no, resizable=no');">
             point 내역</a></li>  -->
-          <li><a href="">내가 쓴 후기</a></li>
+          <li><a href="${path}/board/t_table">내가 쓴 의견</a></li>
           <li style="width: 100px; height: 10px; margin: 5px 0;"></li>
-          <li><form action="info_delete" method="post"><button onclick="all_removed()" type="submit"
+          <li><form action="info_delete" method="post"><button type="submit"
           style="border:0;background-color: lightblue;font-size: 17px;line-height: 1.4em;">회원탈퇴</button></form></li>
           <li><a href="${path}/board/t_write">
             의견제시</a></li>

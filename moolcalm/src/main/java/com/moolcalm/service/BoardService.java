@@ -20,4 +20,5 @@ public interface BoardService {
 	public List<R_configVO> getList(Criteria cri);
 	
 	public int getTotalCount(Criteria cri);
+
 }

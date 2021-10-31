@@ -59,20 +59,28 @@ public class BoardController {
 		return "member/member_info"; //board/read.jsp화면이동.
 	}
 	//수정화면으로 이동(modify.jsp)을 위해 작성
-	@GetMapping("t_writemodify")
+	@GetMapping("modify")
 	public void modifyGet(long r_num, Model model) {
 		log.info("modify");
 		model.addAttribute("modify", service.get(r_num));
 	}
 	// 글수정 화면에서 글수정 버튼을 클릭했을 때 제목, 내용을 처리하기 위해.
 	@PostMapping("modify")
-	public String modifyPost(R_configVO R_config, RedirectAttributes rttr, Model model) {
-		log.info("modifyPost"+R_config);
-		model.addAttribute("result", service.modify(R_config));
+	public String modifyPost(R_configVO R_config, RedirectAttributes rttr, HttpServletResponse response) throws IOException {		
+		service.modify(R_config);	
 		rttr.addAttribute("r_num", R_config.getR_num());
-		return "redirect:/board/t_writemodify";
+		
+		
+		log.info("modifyPost"+R_config);
+		
+		response.setContentType("text/html; charset=UTF-8");
+    	PrintWriter board_register = response.getWriter();
+    	board_register.println("<script>alert('수정되었습니다. ')</script>");	        	
+    	board_register.flush();	
+		
+		return "member/member_info";
 	}
-	@GetMapping("remove")
+	@GetMapping("remove")	
 	public String remove(long r_num) {
 		log.info("remove"+r_num);
 		service.remove(r_num);

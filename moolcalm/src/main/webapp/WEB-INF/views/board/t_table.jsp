@@ -16,8 +16,11 @@
 <body>
   <section class="wrap">
     <div class="f_top">
-      <h2>수정 제안</h2>
-      <form action="t_table" method="get" class="">
+      <h2>수정 제안</h2> 
+      <a href="${path}/" style="font-size: 17px;line-height: 1.4em;">Home</a>
+      <a href="${path}/member/member_info">mine</a>
+      <br><br><br>
+     <!--   <form action="t_table" method="get" class="">-->
         <section class="t_list">
 	        <c:forEach var="boardlist" items="${list}">
 	         <input type="hidden" value="${boardlist.r_num}">
@@ -33,11 +36,10 @@
 	                </p>
 	                <hr>
 	                <div class="t_footer">
-	                  <a href="board/t_writemodify">	                  
-	                  <span  class="t_btn">
-	                  	수정
-	                  </span>	                  
-	                  </a>
+	                
+	                <span>
+	                 <!--  <a href="/board/modify?r_num=${boardlist.r_num}" class="t_btn">수정</a> -->
+	                  </span>
 	                  
 	                  <span>
 	                  <a  href="/board/remove?r_num=${boardlist.r_num}" class="t_btn">삭제</a>
@@ -48,9 +50,9 @@
 	          </ol>          
           </c:forEach>
         </section>
-      </form>
+     <!--  </form> -->
       
-    <form id="searchForm" action="">	
+   <!-- <form id="" action="">	
 	<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">	
 	<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
     </form>
@@ -58,19 +60,19 @@
     
 	<ul>
 	<c:if test="${pageMaker.prev}">
-	<li class="paginate_button prev"><a href="/board/list?pageNum=${pageMaker.startPage-1}&amount=${pageMaker.cri.amount}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}">Previous</a></li>
+	<li class=""><a href="/board/t_table?pageNum=${pageMaker.startPage-1}&amount=${pageMaker.cri.amount}">Previous</a></li>
 	</c:if>
 	
 	<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-	<li class="paginate_button page-item ${pageMaker.cri.pageNum==num?'active':''}">
-	<a href="/board/list?pageNum=${num}&amount=${pageMaker.cri.amount}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}" class="page-link">${num}</a>
+	<li class=" ${pageMaker.cri.pageNum==num?'active':''}">
+	<a href="/board/t_table?pageNum=${num}&amount=${pageMaker.cri.amount}" class="page-link">${num}</a>
 	</li>
 	</c:forEach>
 	
 	<c:if test="${pageMaker.next}">
-	<li class="paginate_button next"><a href="/board/list?pageNum=${pageMaker.endPage+1}&amount=${pageMaker.cri.amount}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}">Next</a></li>
+	<li class=""><a href="/board/t_table?pageNum=${pageMaker.endPage+1}&amount=${pageMaker.cri.amount}">Next</a></li>
 	</c:if>
-	</ul>
+	</ul>-->
     </div>
   </section>    
 </body>
