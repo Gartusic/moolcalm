@@ -12,6 +12,9 @@ public interface MemberMapper {
 	//로그인 처리
 	public InfoVO login(InfoVO member);
 	
+	//출석체크 시 포인트보상, 업데이트 처리
+	public void dailycheck(String email);
+	
 //public void join(Map<String, Object>map,InfoVO vo);     //회원가입 관련
     
     public void join(InfoVO vo);   

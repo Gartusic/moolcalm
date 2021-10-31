@@ -9,17 +9,15 @@
 		${item}<br>
 	</c:forEach>
 	
-	<div id="wrap">
-        <h1>상품 리스트</h1>
-        
+	<div id="wrap_p_list">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
               
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
-              <a  class="navbar-brand p_logo" href="/">logo</a>
-              <a href="/" class="p_prev">뒤로</a>
+              <a class="navbar-brand p_logo" href="/">logo</a>
+              <a href="/" class="p_prev"><i class="bi bi-arrow-90deg-left" title="뒤로"></i></a>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">상품 유형</li>

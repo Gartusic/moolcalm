@@ -29,9 +29,9 @@ textarea{
 /* start t_table.html */
 
 .column{
-  column-count: 3;  
+  column-count: 6;  
   column-width: 200px;
-  column-gap: 10px;
+  column-gap: 5px;
 }
 
 .t_header,
@@ -48,6 +48,8 @@ textarea{
 }
 
 .t_list ol li{
+	
+  margin-top: 35px;
   margin-right: 35px;
   display: inline-block;
 

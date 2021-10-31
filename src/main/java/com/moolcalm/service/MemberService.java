@@ -7,6 +7,9 @@ import com.moolcalm.domain.InfoVO;
 public interface MemberService {
 	public InfoVO login(InfoVO member);
 	
+	//출석체크 시 포인트보상, 업데이트 처리
+	public void dailycheck(String email);
+	
 	public void join (InfoVO vo); //회원가입 관련
     
     public String find_passCheck(InfoVO vo);    //비밀번호 찾기 관련

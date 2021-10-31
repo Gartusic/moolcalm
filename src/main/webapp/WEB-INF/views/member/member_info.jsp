@@ -22,7 +22,7 @@
       <details open>
         <summary>잔여포인트</summary>
           <p class="info_point">
-            1209412
+            ${ssn.point}
           </p>
       </details>
 
@@ -30,7 +30,7 @@
         <ul>
           <li><a href="${path}/member/info_new_password">
             비밀번호 변경하기</a></li>
-          <li><a href="">보관함 가기</a></li>
+          <li><a href="${path}/products/myCollection">보관함 가기</a></li>
           <!-- <li><a href="javascript:void(11);" onclick="window.open('/board/l_point.jsp', 'l_point', 'top=300, left=600, width=500, height=400, status=no, menubar=no, toolbar=no, resizable=no');">
             point 내역</a></li>  -->
           <li><a href="${path}/board/t_table">내가 쓴 의견</a></li>

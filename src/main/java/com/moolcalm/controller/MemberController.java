@@ -53,17 +53,20 @@ public class MemberController {
          //20211027추가 end
          
          
-		//변수 선언
-		InfoVO info=service.login(member);
-		//service.login에 member라는 매개변수(infoVO의 내용)를 저장하는 info라는 변수
-		session.setAttribute("ssn", info); //세션의 ssn라는 변수에 info를 저장
-		if(session.getAttribute("ssn")!=null) { // ssn가 null이 아니면
-			return "redirect:/"; // main화면으로 이동
-		}else {
-			return "redirect:/member/sessionLogin"; //null이면 다시 로그인화면으로 이동
-		}
-		
-	}// session로그인 끝
+ 		//변수 선언
+ 		InfoVO info=service.login(member);
+ 		//service.login에 member라는 매개변수(infoVO의 내용)를 저장하는 info라는 변수
+ 		session.setAttribute("ssn", info); //세션의 ssn라는 변수에 info를 저장
+ 		if(session.getAttribute("ssn")!=null) { // ssn가 null이 아니면
+ 			InfoVO ssn = ((InfoVO) session.getAttribute("ssn"));
+ 			service.dailycheck(ssn.getEmail());
+ 			log.info("출석체크 후 포인트"+ssn.getPoint()+", 출석체크 후 로그인 횟수: "+ssn.getLogin_count()+", 오늘의 날짜: "+ssn.getNow_date());
+ 			return "redirect:/"; // main화면으로 이동
+ 		}else {
+ 			return "redirect:/member/sessionLogin"; //null이면 다시 로그인화면으로 이동
+ 		}
+ 		
+ 	}// session로그인 끝
 	
 	//로그아웃
 	@PostMapping("logout")

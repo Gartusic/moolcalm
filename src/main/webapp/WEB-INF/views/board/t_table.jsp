@@ -19,22 +19,22 @@
       <h2>수정 제안</h2> 
       <a href="${path}/" style="font-size: 17px;line-height: 1.4em;">Home</a>
       <a href="${path}/member/member_info">mine</a>
-      <br><br><br>
+      <br><br>
      <!--   <form action="t_table" method="get" class="">-->
-        <section class="t_list">
+        <section class="t_list column">
 	        <c:forEach var="boardlist" items="${list}">
 	         <input type="hidden" value="${boardlist.r_num}">
-	          <ol reversed class=" column">                                 
+	          <ol reversed>                                 
 	              <li>
 	                <div class="t_header">
-	                  <span class="id">${email}</span>
+	                 <!-- <span class="id">${email}</span> --> 
 	                  <span class="today">${boardlist.r_date}</span>
 	                </div>
-	                <hr>
+	               <hr>
 	                <p class="t_opinion">
 	                  ${boardlist.r_content}
 	                </p>
-	                <hr>
+	                <!-- <hr> -->
 	                <div class="t_footer">
 	                
 	                <span>
