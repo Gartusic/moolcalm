@@ -19,7 +19,7 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
               <a  class="navbar-brand p_logo" href="/">logo</a>
-              <a href="/" class="p_prev">뒤로</a>
+              <a href="/" class="p_prev"><i class="bi bi-arrow-90deg-left" title="뒤로"></i></a>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">상품 유형</li>
@@ -70,15 +70,15 @@
             <a>관심</a>  
           </div>
           <div class="row p_cardRow">
-          <c:forEach var="productList" items="${list}">
+          <c:forEach var="collectionList" items="${list}">
             <div class="col-6">
                 <div class="card"> 
-                 <a href="/products/p_detail?p_setname=${productList.p_setname}">
-                <img src="${productList.p_path}"
+                 <a href="/products/p_detail?p_setname=${collectionList.p_setname}">
+                <img src="${collectionList.p_path}"
                         class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">${productList.p_setname}</h5>
-                        <p class="card-text">${productList.p_author}</p>
+                        <h5 class="card-title">${collectionList.p_setname}</h5>
+                        <p class="card-text">${collectionList.p_author}</p>
                     </div>
                     </a>
                 </div>

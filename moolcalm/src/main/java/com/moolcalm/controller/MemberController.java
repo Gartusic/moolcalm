@@ -47,12 +47,25 @@ public class MemberController {
 		//service.login에 member라는 매개변수(infoVO의 내용)를 저장하는 info라는 변수
 		session.setAttribute("ssn", info); //세션의 ssn라는 변수에 info를 저장
 		if(session.getAttribute("ssn")!=null) { // ssn가 null이 아니면
+			InfoVO ssn = ((InfoVO) session.getAttribute("ssn"));
+			service.dailycheck(ssn.getEmail());
+			log.info("출석체크 후 포인트"+ssn.getPoint()+", 출석체크 후 로그인 횟수: "+ssn.getLogin_count()+", 오늘의 날짜: "+ssn.getNow_date());
 			return "redirect:/"; // main화면으로 이동
 		}else {
 			return "redirect:/member/sessionLogin"; //null이면 다시 로그인화면으로 이동
 		}
 		
 	}// session로그인 끝
+	
+/*	@PostMapping("dailycheck")// 좀 더 고쳐보기?
+	public String dailycheck(String email, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String ml = ((InfoVO) session.getAttribute("ssn")).getEmail();
+		service.dailycheck(ml);
+		InfoVO ssn = ((InfoVO) session.getAttribute("ssn"));
+		log.info("출석체크 후 포인트"+ssn.getPoint()+", 출석체크 후 로그인 횟수: "+ssn.getLogin_count()+", 오늘의 날짜: "+ssn.getNow_date());
+		return "redirect:/"; // main화면으로 이동
+	}*/
 	
 	//로그아웃
 	@PostMapping("logout")
@@ -61,7 +74,6 @@ public class MemberController {
 		session.removeAttribute("ssn");
 		// 또는, session.invalidate(); -> 모든 속성 제거
 	}
-
     
     
     //member_info.jsp

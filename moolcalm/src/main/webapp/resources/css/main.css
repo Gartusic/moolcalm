@@ -53,10 +53,16 @@ body{
   	width:70px;
 }
 #m_mainBtn{
+	display:block;
+	text-indent: -99999px;
+    background-image: url(../image/logo.png); 
+    background-position: center;
+    background-size: 50px auto;
+    background-repeat: no-repeat;
 	border-radius: 20px;
     width: 45px;
     height: 45px;
-    background-color: violet;
+    background-color: rgb(247, 192, 247);
     border:0;
 	position:absolute;
 	bottom:0;

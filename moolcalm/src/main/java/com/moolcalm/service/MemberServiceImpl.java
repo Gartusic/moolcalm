@@ -22,6 +22,13 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.login(member);
 	};
 	
+	//출석체크 시 포인트보상, 업데이트 처리
+	@Override
+	public void dailycheck(String email) {
+		log.info("출석체크");
+		mapper.dailycheck(email);
+	};
+	
 	public void join(InfoVO vo) {	
 		mapper.join(vo);
 	}

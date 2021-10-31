@@ -5,7 +5,11 @@ import java.util.List;
 import com.moolcalm.domain.InfoVO;
 
 public interface MemberService {
+	//로그인
 	public InfoVO login(InfoVO member);
+	
+	//출석체크 시 포인트보상, 업데이트 처리
+	public void dailycheck(String email);
 	
 	public void join (InfoVO vo); //회원가입 관련
     

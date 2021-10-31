@@ -112,14 +112,4 @@ public class ProductController {
 	// get, post, put, delete 다 달라서용
 	
 	
-	//내 보관함 보기
-	@GetMapping("myCollection")
-	public void readCollection(String p_setname, Model model) {
-		log.info("read" + p_setname);
-		// 셀렉트 여러개 해야될때는 이런식으로 모델 계속 추가하면 됩니다.?
-		model.addAttribute("read", service.read(p_setname));
-		model.addAttribute("readList", service.readList(p_setname));
-		model.addAttribute("readProductCount", service.readProductCount(p_setname));
-	}
-	
 }
