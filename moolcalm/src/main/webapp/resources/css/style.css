@@ -1,6 +1,8 @@
 @charset "utf-8";
 
-
+#wrap_p_list{
+	margin:0;
+}
 #wrap_p_detail{
 	margin: 30px;
 }
@@ -80,6 +82,10 @@ div.d_top{
 	justify-content: space-between;
 	margin-bottom: 20px;
 }
+.figure{
+	width:100%;
+}
+
 .buyBtn{
 	display:block;
 	margin: 0 auto;

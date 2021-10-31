@@ -9,9 +9,7 @@
 		${item}<br>
 	</c:forEach>
 	
-	<div id="wrap">
-        <h1>상품 리스트</h1>
-        
+	<div id="wrap_p_list">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
               

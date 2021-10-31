@@ -3,7 +3,7 @@
 
 	<%@include file="../include/header.jsp"%>
 <section class="wrap">
-<form action="sessionLogin" method="post" class="f_width_center">
+<form action="/member/sessionLogin" method="post" class="f_width_center">
 	<fieldset  class="f_width_center">
 		<div>
 			<h2>LOGIN</h2>

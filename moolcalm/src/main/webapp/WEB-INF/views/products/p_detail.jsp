@@ -4,7 +4,7 @@
 	<%@include file="../include/header.jsp"%>
 	<div id="wrap_p_detail">
         <div class="d_top">
-            <h1>상품 상세페이지</h1>
+        <h3>상세 페이지</h3>
             <a href="/products/p_list" class="p_prev"><i class="bi bi-arrow-90deg-left" title="뒤로"></i></a>
         </div>
         <figure class="figure">
