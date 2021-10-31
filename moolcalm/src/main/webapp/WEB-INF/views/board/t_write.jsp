@@ -17,8 +17,9 @@
   <section class="wrap">
     <div class="f_top f_width_center">
       <h2>글쓰기</h2>
-      <form action="" method="get" class="f_width_center">
-        <textarea name="" id="" cols="30" rows="10" autofocus></textarea>
+      <form action="t_write" method="post" class="f_width_center">
+      	<input value="${email}" name="email" type="hidden" class="L_join_text f_input_box" autofocus placeholder="email" readonly>
+        <textarea name="r_content" id="" cols="30" rows="10" autofocus>${register.r_content}</textarea>
         <br>
         <fieldset class="t_w_btns_box">
           <legend class="t_w_btns">

@@ -51,4 +51,15 @@
         where email=#{email}
     </select>      
 	
+	
+	
+	<delete id="info_delete_c">
+		delete from collection_list where email=#{email}
+	</delete>
+	<delete id="info_delete_r">
+		delete from r_config where email=#{email}
+	</delete>
+	<delete id="info_delete">
+    	delete FROM moolcalm.l_info where email=#{email}
+    </delete> 
 </mapper>

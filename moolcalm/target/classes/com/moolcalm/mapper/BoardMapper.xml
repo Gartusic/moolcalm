@@ -12,9 +12,26 @@
 		]]>
 	</select>
 	
+	
+	<select id="getListWithPaging" resultType="com.moolcalm.domain.R_configVO">
+
+		select rownum, r_num, email, r_date, r_content
+		from (
+		select @rownum:=@rownum+1 as rownum,b.*
+		from (
+		select @rownum:=0
+		) as tmp, r_config as b
+		order by r_num desc
+		) as boardList
+		
+		<![CDATA[
+		where rownum>(#{pageNum} - 1)*#{amount} and rownum<=#{pageNum} *#{amount}		
+		]]>
+	</select>
+	
 	<insert id="insert">
-		insert into r_config(email,r_date,r_content, r_star)
-		values(#{email},now(),#{r_content},#{r_star})
+		insert into r_config(email,r_date,r_content)
+		values(#{email},now(),#{r_content})
 	</insert>
 	
 	<insert id="insertSelectKey">
@@ -22,8 +39,8 @@
 			select max(r_num)+1 r_num from r_config
 		</selectKey>
 		
-		insert into r_config(email,r_date,r_content, r_star)
-		values(#{email},now(),#{r_content},#{r_star})
+		insert into r_config(email,r_date,r_content)
+		values(#{email},now(),#{r_content})
 	</insert>
 	
 	<select id="read" resultType="com.moolcalm.domain.R_configVO">

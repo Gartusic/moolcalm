@@ -27,4 +27,8 @@ public interface MemberMapper {
     public int email_check(String email);    //이메일 중복 확인 
    
     public List<InfoVO> member_profile();    //회원의 프로필 정보를 확인할 수 있는 메소드
+
+    public void info_delete_r(String email);
+    public void info_delete_c(String email);
+    public void info_delete(String email);  //회원탈퇴
 }

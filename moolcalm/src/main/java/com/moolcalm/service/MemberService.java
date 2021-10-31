@@ -20,4 +20,6 @@ public interface MemberService {
     public int email_check(String email);    //이메일 중복확인을 하는 메소드
      
     public List<InfoVO> member_profile(String email);    //회원의 프로필을 볼 수 있는 메소드
+
+    public void info_delete(String email);  //회원탈퇴
 }

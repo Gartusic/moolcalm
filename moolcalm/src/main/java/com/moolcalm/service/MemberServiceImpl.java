@@ -54,5 +54,12 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.member_profile();
 	}
 
+	@Override
+	public void info_delete(String email) {
+		mapper.info_delete_r(email);
+		mapper.info_delete_c(email);
+		mapper.info_delete(email);
+		
+	}
 
 }
