@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.moolcalm.mapper.BoardMapper">
+
+	<select id="getList" resultType="com.moolcalm.domain.R_configVO">
+		<![CDATA[
+			select * from r_config where r_num > 0
+		]]>
+	</select>
+	
+	
+	<select id="getListWithPaging" resultType="com.moolcalm.domain.R_configVO">
+
+		select rownum, r_num, email, r_date, r_content
+		from (
+		select @rownum:=@rownum+1 as rownum,b.*
+		from (
+		select @rownum:=0
+		) as tmp, r_config as b
+		order by r_num desc
+		) as boardList
+		
+		<![CDATA[
+		where rownum>(#{pageNum} - 1)*#{amount} and rownum<=#{pageNum} *#{amount}		
+		]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from r_config
+	</select>
+	
+	<insert id="insert">
+		insert into r_config(email,r_date,r_content)
+		values(#{email},now(),#{r_content})
+	</insert>
+	
+	<insert id="insertSelectKey">
+		<selectKey keyProperty="r_num" order="BEFORE" resultType="int">
+			select max(r_num)+1 r_num from r_config
+		</selectKey>
+		
+		insert into r_config(email,r_date,r_content)
+		values(#{email},now(),#{r_content})
+	</insert>
+	
+	<select id="read" resultType="com.moolcalm.domain.R_configVO">
+		select * from r_config where r_num=#{r_num}
+	</select>
+	
+	<delete id="delete">
+		delete from r_config where r_num=#{r_num}
+	</delete>
+	
+	<update id="update">
+	update r_config
+	set r_content=#{r_content},
+		r_date=now()
+	where r_num=#{r_num}
+	</update>
+	
+</mapper>

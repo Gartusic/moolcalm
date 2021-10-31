@@ -1,0 +1,94 @@
+@charset "utf-8";
+
+::-webkit-scrollbar{
+  display: none;
+}
+
+body{
+  background-color: rgb(230, 241, 245);
+}
+.m_wrap{
+	margin:0 auto;
+}
+.m_login_text{
+	padding-top: 10px;
+  padding-left: 10px;
+  color: #777;    
+}
+
+.m_contents{    
+  position: relative;
+}
+
+.m_form{
+  height: 30px;
+  position: relative;    
+}
+
+.m_search_text{  
+  padding-left: 20px;
+  padding-right: 50px;    
+}
+
+.m_search_btn{
+  position: absolute;
+  top: 0;
+  right: 55px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.m_img{
+	border-radius: 10px;
+	overflow:hidden;
+}
+
+
+/* 메인메뉴 버튼 */
+#m_mainMenu{
+	position: absolute;
+	height:400px;
+  	top: 10%;
+  	right: 0px;
+  	width:70px;
+}
+#m_mainBtn{
+	border-radius: 20px;
+    width: 45px;
+    height: 45px;
+    background-color: violet;
+    border:0;
+	position:absolute;
+	bottom:0;
+	right:0;
+}
+
+.m_nav{
+	display: none;
+/* 	display:block; */
+	margin: 0 auto;
+}
+
+
+nav.m_nav>ul{
+  opacity: 0.7;
+  width: 70px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+nav.m_nav>ul>li{
+  text-align: center;
+  line-height: 50px;
+  font-size: 25px;
+  margin: 0 auto;
+  background-color: rgb(237, 237, 237); 
+  width: 70px;
+  height:70px;
+  display:block;
+}
+nav.m_nav>ul>li button{
+	font-size:25px;
+	border:0;
+}

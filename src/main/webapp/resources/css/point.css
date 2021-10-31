@@ -1,0 +1,13 @@
+@charset "utf-8";
+
+.p_list ol li::marker{
+  color: lightblue;
+  font-weight: bold;
+}
+
+.p_list ol li{
+  margin-right: 35px;
+
+  border-radius: 5px;
+  border: 1px solid lightblue;
+}
