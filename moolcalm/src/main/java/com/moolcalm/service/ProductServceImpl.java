@@ -35,6 +35,12 @@ public class ProductServceImpl implements ProductService{
 		log.info("product_check");
 		return mapper.product_check(vo);
 	}
+	// 포인트 차감
+	@Override
+	public void minusPoint(int point, String email) {
+		log.info("point 차감 ");
+		mapper.minusPoint(point, email);
+	}
 	
 	@Override
 	//모음집 상세페이지 생성

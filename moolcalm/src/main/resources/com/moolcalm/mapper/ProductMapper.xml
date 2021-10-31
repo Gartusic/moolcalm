@@ -18,10 +18,16 @@
         where email=#{email} and p_name=#{p_name}
     </select>
 	
+	<!-- 구매 목록에 추가 -->
 	<insert id="buy" parameterType="com.moolcalm.domain.CollectionVO">
 	  	insert into collection_list(email, p_name)
 	  	values (#{email}, #{p_name})
   	</insert>
+  	
+  	<!-- 포인트 차감 -->
+  	<update id="minusPoint">
+  		UPDATE l_info SET point = point - #{point} WHERE email = #{email}
+  	</update>
   	
   	<!-- 모음집 상세페이지 생성 -->
 	 <select id="read" resultType="com.moolcalm.domain.ProductVO">

@@ -11,6 +11,7 @@ public interface ProductService {
 		
 		//상품구매 중복확인
 		public int product_check(CollectionVO vo);
+		public void minusPoint(int point, String email); // 포인트 차감
 		
 		//상품 목록리스트(상세페이지)
 		public ProductVO read(String p_setname);
