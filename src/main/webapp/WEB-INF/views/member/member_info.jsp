@@ -36,12 +36,12 @@
           <li><a href="${path}/board/t_table">내가 쓴 의견</a></li>
           <li style="width: 100px; height: 10px; margin: 5px 0;"></li>
           <li><form action="info_delete" method="post"><button type="submit"
-          style="border:0;background-color: lightblue;font-size: 17px;line-height: 1.4em;">회원탈퇴</button></form></li>
+          style="border:0;background-color: rgb(230, 241, 245);font-size: 17px;line-height: 1.4em;">회원탈퇴</button></form></li>
           <li><a href="${path}/board/t_write">
             의견제시</a></li>
           <li style="width: 100px; height: 10px; margin: 5px 0;"></li>
           <li><form action="/member/logout" method="post"><button id="removed" type="submit"
-          style="border:0; background-color: lightblue;font-size: 17px;line-height: 1.4em;">로그아웃</button></form></li>
+          style="border:0; background-color: rgb(230, 241, 245);font-size: 17px;line-height: 1.4em;">로그아웃</button></form></li>
         </ul>
       </section>    
     </div>
