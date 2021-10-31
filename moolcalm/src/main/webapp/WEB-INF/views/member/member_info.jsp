@@ -45,19 +45,6 @@
         </ul>
       </section>    
     </div>
-  </section>
-  
-  
-    <script>
-
-    function all_removed() {
-   	  session.removeAttribute("email");
-      alert("탈퇴되셨습니다.");
-      document.getElementById("say_bye").textContent="앞길에 좋은날만 가득하시길 바랍니다.";
-      }
-
-    </script>
-  
-  
+  </section>  
 </body>
 </html>

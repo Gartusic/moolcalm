@@ -7,6 +7,11 @@
     display: inline-block;
     margin: 10px 20px 0 0;
 }
+.p_logo, .p_prev{
+	width:45px !important;
+	height:45px !important;
+}
+
 .p_catg{
     margin: 0 20px;
 }

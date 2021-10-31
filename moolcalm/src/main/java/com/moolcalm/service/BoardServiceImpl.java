@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.moolcalm.domain.Criteria;
 import com.moolcalm.domain.R_configVO;
 import com.moolcalm.mapper.BoardMapper;
 
@@ -33,8 +34,16 @@ public class BoardServiceImpl implements BoardService {
 		log.info("remove...."+r_num);		
 		return mapper.delete(r_num)==1;}
 
-	public List<R_configVO> getList() {
-		log.info("getregister....");
-		return mapper.getList();
-		}
-}
+	@Override
+
+	public List<R_configVO> getList(Criteria cri) {
+	log.info("getList........");
+	return mapper.getListWithPaging(cri);
+	}
+
+	@Override
+	public int getTotalCount(Criteria cri) {
+	return mapper.getTotalCount(cri);
+	}
+
+	}

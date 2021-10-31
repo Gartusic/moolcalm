@@ -18,9 +18,7 @@ summary,
   text-align: center;  
 }
 
-.info_list ul
-{
-
+.info_list ul{
   list-style: none;
 
   text-align: center;
@@ -29,7 +27,7 @@ summary,
   line-height: 1.4em;
 }
 
-.info_list ul li:hover{
+.info_list ul a:hover{
   font-weight: bold;
   color: rgb(237, 237, 237);
 

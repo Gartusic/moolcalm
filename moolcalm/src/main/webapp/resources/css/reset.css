@@ -7,14 +7,13 @@
 *{
   margin: 0;
   padding: 0;
-
+  text-decoration:none;
   color: #444;
 }
 
 .wrap{
   padding-top: 40px;
-  margin-left: 40px;
-
+  margin-left: 10%;
   position: relative;
 }
 
@@ -25,6 +24,9 @@ body{
   color: #111;
 }
 
+ul, li{
+	list-style:none;
+}
 li{
   width: inherit;
 }
