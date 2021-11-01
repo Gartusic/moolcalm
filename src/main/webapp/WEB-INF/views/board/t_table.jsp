@@ -16,7 +16,7 @@
 <body>
   <section class="wrap">
     <div class="f_top">
-      <h2>수정 제안</h2> 
+      <h2>제안</h2> 
       <a href="${path}/" style="font-size: 17px;line-height: 1.4em;">Home</a>
       <a href="${path}/member/member_info">mine</a>
       <br><br>
