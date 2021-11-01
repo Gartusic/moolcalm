@@ -1,0 +1,61 @@
+@charset "utf-8";
+
+.L_join_contents,
+.L_find_contents{
+  position: relative;
+}
+
+
+fieldset{
+  border: 0;
+}
+
+.L_login_text,
+.L_join_text,
+.L_find_text,
+.L_new_text{
+  padding: 0 20px;
+}
+
+.L_join_explain,
+.L_new_explain{
+  padding-left: 10px;
+  color: rgb(237, 237, 237);
+  line-height: 1em;
+}
+
+.L_join_verify_email,
+.L_find_verify_email{
+  position: absolute;
+  top: 60px;
+  right: 55px;
+}
+
+.L_join_btn_sort,
+.L_find_btn_sort,
+.L_new_btn_sort{
+  width: 300px;
+  text-align: right;
+  margin-left: -55px;
+}
+
+.L_login_btn_sort{
+  width: 300px;
+  text-align: center;
+  margin-left: -25px;
+}
+
+.L_login_btn_sort{
+  width: 300px;
+  text-align: center;
+  margin-left: -25px;
+}
+
+.L_join_btn_sort,
+.L_new_btn_sort{
+  margin-top: -10px;
+}
+
+.L_find_btn_sort{
+  margin-top: 10px;
+}
