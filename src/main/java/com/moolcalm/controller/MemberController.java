@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
-//import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,28 +43,37 @@ public class MemberController {
 	public String sessionLoginPost(InfoVO member, HttpSession session,HttpServletRequest request) {	
 		log.info("로그인서비스처리");
 		
-		
 		//20211027추가 - yuj
 		 String yuj_email = request.getParameter("email");
-         session.setAttribute("email", yuj_email); 
-         log.info("yuj_email : "+session.getAttribute("email"));
-         //20211027추가 end
-         
-         
- 		//변수 선언
- 		InfoVO info=service.login(member);
- 		//service.login에 member라는 매개변수(infoVO의 내용)를 저장하는 info라는 변수
- 		session.setAttribute("ssn", info); //세션의 ssn라는 변수에 info를 저장
- 		if(session.getAttribute("ssn")!=null) { // ssn가 null이 아니면
- 			InfoVO ssn = ((InfoVO) session.getAttribute("ssn"));
- 			service.dailycheck(ssn.getEmail());
- 			log.info("출석체크 후 포인트"+ssn.getPoint()+", 출석체크 후 로그인 횟수: "+ssn.getLogin_count()+", 오늘의 날짜: "+ssn.getNow_date());
- 			return "redirect:/"; // main화면으로 이동
- 		}else {
- 			return "redirect:/member/sessionLogin"; //null이면 다시 로그인화면으로 이동
- 		}
- 		
- 	}// session로그인 끝
+        session.setAttribute("email", yuj_email); 
+        log.info("yuj_email : "+session.getAttribute("email"));
+        //20211027추가 end
+		
+		
+		//변수 선언
+		InfoVO info=service.login(member);
+		//service.login에 member라는 매개변수(infoVO의 내용)를 저장하는 info라는 변수
+		session.setAttribute("ssn", info); //세션의 ssn라는 변수에 info를 저장
+		if(session.getAttribute("ssn")!=null) { // ssn가 null이 아니면
+			InfoVO ssn = ((InfoVO) session.getAttribute("ssn"));
+			service.dailycheck(ssn.getEmail());
+			log.info("출석체크 후 포인트"+ssn.getPoint()+", 출석체크 후 로그인 횟수: "+ssn.getLogin_count()+", 오늘의 날짜: "+ssn.getNow_date());
+			return "redirect:/"; // main화면으로 이동
+		}else {
+			return "redirect:/member/sessionLogin"; //null이면 다시 로그인화면으로 이동
+		}
+		
+	}// session로그인 끝
+	
+/*	@PostMapping("dailycheck")// 좀 더 고쳐보기?
+	public String dailycheck(String email, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String ml = ((InfoVO) session.getAttribute("ssn")).getEmail();
+		service.dailycheck(ml);
+		InfoVO ssn = ((InfoVO) session.getAttribute("ssn"));
+		log.info("출석체크 후 포인트"+ssn.getPoint()+", 출석체크 후 로그인 횟수: "+ssn.getLogin_count()+", 오늘의 날짜: "+ssn.getNow_date());
+		return "redirect:/"; // main화면으로 이동
+	}*/
 	
 	//로그아웃
 	@PostMapping("logout")
@@ -163,7 +170,14 @@ public class MemberController {
             out_email.println("<script>alert('이메일이 발송되었습니다. 인증번호를 입력해주세요.');</script>");
             out_email.flush();
         }
-             
+        
+        
+        
+
+        
+        
+        
+        
         
         return mv;
         
@@ -246,30 +260,13 @@ public ModelAndView join_injeung(String email_injeung, @PathVariable String dice
 			
 			// 회원가입 post
 			@PostMapping("join")
-			public String postRegister(InfoVO vo, Model model) throws Exception {
+			public String postRegister(InfoVO vo) throws Exception {
+				log.info("post register");
 				
-		        String result = "";
-		        try {
-		        	log.info("/member/join 요청");
-		        	log.info("EMAIL: " + vo.getEmail());
-		        	log.info("PW: " + vo.getPassword());
-		        	log.info("PW2: " + vo.getPassword_again());
-		            
-		            if(vo.getPassword().equals(vo.getPassword_again())){
-		            	service.join(vo);
-		            	log.info("finish register");
-		                result = "redirect:/";
-		            }
-		            else {
-		                result = "/member/join";
-		            }
-		        } catch (Exception e) {
-		        	log.info(e.getMessage());
-		        }
-		        return result;
-		    }
-
-
+				service.join(vo);
+				
+				return "redirect:/";
+			}
 			
 		//비밀번호찾기
 			@GetMapping("find_password")
@@ -435,6 +432,7 @@ public ModelAndView join_injeung(String email_injeung, @PathVariable String dice
 			return "redirect:/member/sessionLogin";
 		}
 		
+
 		//*********************************************************
 		//회원정보 새로운 비밀번호 입력 페이지 맵핑 메소드
 		@GetMapping("info_new_password")
@@ -464,11 +462,14 @@ public ModelAndView join_injeung(String email_injeung, @PathVariable String dice
 	        	//;history.forward(); location.replace=('http://localhost:8080/');
 	        	All_removed.flush();
 
-	        	
-				log.info("login email="+(String)session.getAttribute("email"));			
-				service.info_delete((String)session.getAttribute("email"));
-				session.removeAttribute("email");
-				session.removeAttribute("ssn");
+	      
+				log.info("login email="+(String)session.getAttribute("email"));	
+				String email = (String)session.getAttribute("email");
+				
+				service.info_delete(email);
+				//session.removeAttribute("email");
+				//session.removeAttribute("ssn");
+				//session.invalidate();
 				
 				log.info("bye");
 				
@@ -479,8 +480,6 @@ public ModelAndView join_injeung(String email_injeung, @PathVariable String dice
 			return "main";
 	    
 		}
-				
-				
 		
 	
 }

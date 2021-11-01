@@ -45,7 +45,7 @@ public class MemberServiceImpl implements MemberService{
 
 	public int email_check(String email) {
         int check = mapper.email_check(email);
-        log.info("check="+check);        
+        log.info("check="+check);
         return check;
 	}
 
@@ -54,12 +54,12 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.member_profile();
 	}
 
+	@Override
 	public void info_delete(String email) {
-		mapper.remove_fk();
+		mapper.info_delete_r(email);
+		mapper.info_delete_c(email);
 		mapper.info_delete(email);
-		mapper.reset_fk();
+		
 	}
-
-
 
 }

@@ -29,10 +29,6 @@
 		]]>
 	</select>
 	
-	<select id="getTotalCount" resultType="int">
-		select count(*) from r_config
-	</select>
-	
 	<insert id="insert">
 		insert into r_config(email,r_date,r_content)
 		values(#{email},now(),#{r_content})
@@ -57,7 +53,7 @@
 	
 	<update id="update">
 	update r_config
-	set r_content=#{r_content},
+	set r_content=#{content},
 		r_date=now()
 	where r_num=#{r_num}
 	</update>

@@ -90,6 +90,9 @@ public class ProductController {
 			col.setEmail(email);
 			col.setP_name(p_name);
             
+			
+			int point = 10; // 임시 값
+//			int point = service.readList().getPoint();
 			// 상품이 중복되지 않으면
 			if(service.product_check(col)!= 1) {
 			
@@ -101,7 +104,9 @@ public class ProductController {
 	              Alert.flush(); // 초기화
 				// 그리고 물품을 사면 그 물품의 갯수도 줄어야겠죠?
 				// 여기다가 넣을수 있으면 좋겠네요 파이팅!
-				
+	              service.minusPoint(point, email);
+	              log.info("구매 성공 : "+point+","+email);
+	              model.addAttribute("list", service.getList());
 				// 성공적으로 끝났을 터이니 리스트로
 				return "/products/p_list"; // 알림과 리다이렉트는 충돌되기때문에 같이 쓰면 안됩니당 ㅇㅅㅇ
 			} else {

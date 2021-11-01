@@ -5,6 +5,7 @@ import java.util.List;
 import com.moolcalm.domain.InfoVO;
 
 public interface MemberService {
+	//로그인
 	public InfoVO login(InfoVO member);
 	
 	//출석체크 시 포인트보상, 업데이트 처리
@@ -19,7 +20,6 @@ public interface MemberService {
     public int email_check(String email);    //이메일 중복확인을 하는 메소드
      
     public List<InfoVO> member_profile(String email);    //회원의 프로필을 볼 수 있는 메소드
-    
+
     public void info_delete(String email);  //회원탈퇴
-    
 }
