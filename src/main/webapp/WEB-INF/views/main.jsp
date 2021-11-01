@@ -52,7 +52,18 @@
 	}
     </style>
     
-    
+    <link rel="favicon" href="${path}/resources/image/favicon.ico">
+
+	<link rel="icon" type="image/png" sizes="32x32" href="${path} /resources/image/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="${path} /resources/image/favicon-16x16.png">
+	
+	<link rel="icon" type="image/x-icon" sizes="32x32" href="${path} /resources/image/favicon-32x32.png">
+	<link rel="icon" type="image/x-icon" sizes="16x16" href="${path} /resources/image/favicon-16x16.png">
+	
+	
+	<link rel="manifest" href="${path} /resources/image/manifest.json">
+
+	<link rel="icon" href="${path}http://localhost:8080/" />
 </head>
 
 <script id="snowAnimate">  
