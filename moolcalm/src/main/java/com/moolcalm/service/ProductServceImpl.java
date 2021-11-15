@@ -22,7 +22,7 @@ public class ProductServceImpl implements ProductService{
 	@Autowired
 	private ProductMapper mapper;
 	
-	//±¸¸ÅÇÏ±â	
+	//êµ¬ë§¤í•˜ê¸°
 	@Override
 	public void buy(CollectionVO vo) {
 		log.info("buy");
@@ -30,38 +30,38 @@ public class ProductServceImpl implements ProductService{
 		mapper.buy(vo);
 	};
 	
-	// ±¸¸ÅÁßº¹ È®ÀÎ
+	// êµ¬ë§¤ì¤‘ë³µ í™•ì¸
 	public int product_check(CollectionVO vo) {
 		log.info("product_check");
 		return mapper.product_check(vo);
 	}
-	// Æ÷ÀÎÆ® Â÷°¨
+	// í¬ì¸íŠ¸ ì°¨ê°
 	@Override
 	public void minusPoint(int point, String email) {
-		log.info("point Â÷°¨ ");
+		log.info("point ì°¨ê° ");
 		mapper.minusPoint(point, email);
 	}
 	
 	@Override
-	//¸ğÀ½Áı »ó¼¼ÆäÀÌÁö »ı¼º
+	//ëª¨ìŒì§‘ ìƒì„¸í˜ì´ì§€ ìƒì„±
 	public ProductVO read(String p_setname) {
 		log.info("get"+p_setname);
 		return mapper.read(p_setname);
 	};
 	
 	@Override
-	//¸ğÀ½Áı ¸ñ·Ï »ı¼º
+	//ëª¨ìŒì§‘ ëª©ë¡ ìƒì„±
 	public List<ProductVO> getList(){
 		log.info("getList");
 		return mapper.getList();
 	};
-	//»ó¼¼ÆäÀÌÁöÀÇ »óÇ° ³¹°³ ¸®½ºÆ® »ı¼º
+	//ìƒì„¸í˜ì´ì§€ì˜ ìƒí’ˆ ë‚±ê°œ ë¦¬ìŠ¤íŠ¸ ìƒì„±
 	public List<ProductVO> readList(String p_setname){
 		log.info("readList");
 		return mapper.readList(p_setname);
 	}
 	@Override
-	//»óÇ° ¸ğÀ½Áı ¼Ó »óÇ°ÀÇ ÃÑ °¹¼ö
+	//ìƒí’ˆ ëª¨ìŒì§‘ ì† ìƒí’ˆì˜ ì´ ê°¯ìˆ˜
 	public ProductVO readProductCount(String p_setname) {
 		log.info("readProductCount");
 		return mapper.readProductCount(p_setname);

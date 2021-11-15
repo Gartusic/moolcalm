@@ -9,26 +9,26 @@ import com.moolcalm.domain.InfoVO;
 
 public interface MemberMapper {
 
-	//·Î±×ÀÎ Ã³¸®
+	//ë¡œê·¸ì¸ ì²˜ë¦¬
 	public InfoVO login(InfoVO member);
 	
-	//Ãâ¼®Ã¼Å© ½Ã Æ÷ÀÎÆ®º¸»ó, ¾÷µ¥ÀÌÆ® Ã³¸®
+	//ì¶œì„ì²´í¬ ì‹œ í¬ì¸íŠ¸ë³´ìƒ, ì—…ë°ì´íŠ¸ ì²˜ë¦¬
 	public void dailycheck(String email);
-//public void join(Map<String, Object>map,InfoVO vo);     //È¸¿ø°¡ÀÔ °ü·Ã
+//public void join(Map<String, Object>map,InfoVO vo);     //È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     
     public void join(InfoVO vo);   
    
-    public String find_passCheck(InfoVO vo);    //ºñ¹Ğ¹øÈ£ Ã£±â
+    public String find_passCheck(InfoVO vo);    //ï¿½ï¿½Ğ¹ï¿½È£ Ã£ï¿½ï¿½
  
-    //public void authentication(InfoVO vo);        //¼Ò¼È ·Î±×ÀÎ È¸¿øÀÎÁõ °ü·Ã ¸Ş¼Òµå
+    //public void authentication(InfoVO vo);        //ï¿½Ò¼ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ş¼Òµï¿½
  
-    public void pass_change(InfoVO vo);    //ºñ¹Ğ¹øÈ£ º¯°æ
+    public void pass_change(InfoVO vo);    //ï¿½ï¿½Ğ¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½
  
-    public int email_check(String email);    //ÀÌ¸ŞÀÏ Áßº¹ È®ÀÎ 
+    public int email_check(String email);    //ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ßºï¿½ È®ï¿½ï¿½ 
    
-    public List<InfoVO> member_profile();    //È¸¿øÀÇ ÇÁ·ÎÇÊ Á¤º¸¸¦ È®ÀÎÇÒ ¼ö ÀÖ´Â ¸Ş¼Òµå
+    public List<InfoVO> member_profile();    //È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ş¼Òµï¿½
 
-    public void info_delete(String email);  //È¸¿øÅ»Åğ
-    public void remove_fk();  //È¸¿øÅ»Åğ
-    public void reset_fk();  //È¸¿øÅ»Åğ
+    public void info_delete(String email);  //È¸ï¿½ï¿½Å»ï¿½ï¿½
+    public void remove_fk();  //È¸ï¿½ï¿½Å»ï¿½ï¿½
+    public void reset_fk();  //È¸ï¿½ï¿½Å»ï¿½ï¿½
 }

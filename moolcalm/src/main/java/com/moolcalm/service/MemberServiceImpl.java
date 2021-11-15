@@ -22,10 +22,10 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.login(member);
 	};
 	
-	//Ãâ¼®Ã¼Å© ½Ã Æ÷ÀÎÆ®º¸»ó, ¾÷µ¥ÀÌÆ® Ã³¸®
+	//ì¶œì„ì²´í¬ ì‹œ í¬ì¸íŠ¸ë³´ìƒ, ì—…ë°ì´íŠ¸ ì²˜ë¦¬
 	@Override
 	public void dailycheck(String email) {
-		log.info("Ãâ¼®Ã¼Å©");
+		log.info("ì¶œì„ì²´í¬");
 		mapper.dailycheck(email);
 	};
 	

@@ -6,19 +6,19 @@ import com.moolcalm.domain.CollectionVO;
 import com.moolcalm.domain.ProductVO;
 
 public interface ProductService {
-		//±¸¸ÅÇÏ±â
+		//ë¡œê·¸ì¸
 		public void buy(CollectionVO vo);
 		
-		//»óÇ°±¸¸Å Áßº¹È®ÀÎ
+		//ì¶œì„ì²´í¬ ì‹œ í¬ì¸íŠ¸ë³´ìƒ, ì—…ë°ì´íŠ¸ ì²˜ë¦¬
 		public int product_check(CollectionVO vo);
-		public void minusPoint(int point, String email); // Æ÷ÀÎÆ® Â÷°¨
+		public void minusPoint(int point, String email); // í¬ì¸íŠ¸ ì°¨ê°
 		
-		//»óÇ° ¸ñ·Ï¸®½ºÆ®(»ó¼¼ÆäÀÌÁö)
+		//ìƒí’ˆ ëª©ë¡ë¦¬ìŠ¤íŠ¸(ìƒì„¸í˜ì´ì§€)
 		public ProductVO read(String p_setname);
-		//»óÇ° ¸ñ·Ï¸®½ºÆ®(¸ñ·ÏÆäÀÌÁö)
+		//ìƒí’ˆ ëª©ë¡ë¦¬ìŠ¤íŠ¸(ëª©ë¡í˜ì´ì§€)
 		public List<ProductVO> getList();
-		//»óÇ° ³¹°³ ¸®½ºÆ®(»ó¼¼ÆäÀÌÁö)
+		//ìƒí’ˆ ë‚±ê°œ ë¦¬ìŠ¤íŠ¸(ìƒì„¸í˜ì´ì§€)
 		public List<ProductVO> readList(String p_setname);
-		//»óÇ° ¸ğÀ½Áı ¼Ó »óÇ°ÀÇ ÃÑ °¹¼ö,ÃÑ°¡°İ,³¹°³°¡°İ
+		//ìƒí’ˆ ëª¨ìŒì§‘ ì† ìƒí’ˆì˜ ì´ ê°¯ìˆ˜, ì´ê°€ê²©, ë‚±ê°œê°€ê²©
 		public ProductVO readProductCount(String p_setname);
 }

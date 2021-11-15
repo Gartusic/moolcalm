@@ -22,7 +22,7 @@ public class CollectonController {
 	@Autowired
 	CollectionService service;
 	
-	//³» º¸°üÇÔ º¸±â
+	//ë‚´ ë³´ê´€í•¨ ë³´ê¸°
 	@GetMapping("myCollection")
 	public void readCollection(String email, HttpServletRequest Request) {
 		HttpSession session = Request.getSession();

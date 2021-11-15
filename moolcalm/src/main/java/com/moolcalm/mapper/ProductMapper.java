@@ -11,10 +11,10 @@ public interface ProductMapper {
 	public List<ProductVO> getList();
 	//public void buy(InfoVO email, ProductVO p_name);
 	
-	void buy(CollectionVO vo); // ÆÄ¶ó¹ÌÅÍ°¡ ¸¸¾à ¿©·¯°³ ÀÏ°æ¿ì Å¸ÀÔÀ» ÁöÁ¤ÇÏ°í ÇÑ°³¸¸ ÆÄ¶ó¹ÌÅÍ·Î ³Ö¾îº¸ÀÚ
-	// ¾Æ Âü ±×¸®°í interface´Â  public ¾È½áµµ ±âº»ÀÌ public ÀÔ´Ï´ç
-	public int product_check(CollectionVO vo);    //»óÇ°±¸¸Å Áßº¹ È®ÀÎ 
-	public void minusPoint(@Param("point")int point, @Param("email")String email); // Æ÷ÀÎÆ® Â÷°¨
+	void buy(CollectionVO vo); // íŒŒë¼ë¯¸í„°ê°€ ë§Œì•½ ì—¬ëŸ¬ê°œ ì¼ê²½ìš° íƒ€ì…ì„ ì§€ì •í•˜ê³  í•œê°œë§Œ íŒŒë¼ë¯¸í„°ë¡œ ë„£ì–´ë³´ì
+	// ì•„ ì°¸ ê·¸ë¦¬ê³  interfaceëŠ”  public ì•ˆì¨ë„ ê¸°ë³¸ì´ public ì…ë‹ˆë‹¹
+	public int product_check(CollectionVO vo);    //ìƒí’ˆêµ¬ë§¤ ì¤‘ë³µ í™•ì¸ 
+	public void minusPoint(@Param("point")int point, @Param("email")String email); // í¬ì¸íŠ¸ ì°¨ê°
 	
 	public ProductVO read(String p_setname);
 	public List<ProductVO> readList(String p_setname);

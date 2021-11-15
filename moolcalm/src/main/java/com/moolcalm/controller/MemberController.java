@@ -31,18 +31,18 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @RequestMapping("/member")
 public class MemberController {
-	JavaMailSender mailSender;     //���� ���񽺸� ����ϱ� ���� �������� ������.
+	JavaMailSender mailSender;     //메일 서비스를 사용하기 위해 의존성을 주입함.
 	private MemberService service;
 	
-	//���Ƿα����׽�Ʈ
+	//세션로그인테스트
 	@GetMapping("sessionLogin")
 	public void sessionLoginGet() {
 		log.info("로그인화면으로 이동");
 	}
-	//���Ƿα��ν����׽�Ʈ
+	//세션로그인실행테스트
 	@PostMapping("sessionLogin")
 	public String sessionLoginPost(InfoVO member, HttpSession session,HttpServletRequest request) {	
-		log.info("�α��μ���ó��");
+		log.info("로그인서비스처리");
 		
 		//20211027�߰� - yuj
 		 String yuj_email = request.getParameter("email");
@@ -51,37 +51,37 @@ public class MemberController {
         //20211027�߰� end
 		
 		
-		//���� ����
+		//변수 선언
 		InfoVO info=service.login(member);
-		//service.login�� member��� �Ű�����(infoVO�� ����)�� �����ϴ� info��� ����
-		session.setAttribute("ssn", info); //������ ssn��� ������ info�� ����
-		if(session.getAttribute("ssn")!=null) { // ssn�� null�� �ƴϸ�
+		//service.login에 member라는 매개변수(infoVO의 내용)를 저장하는 info라는 변수
+		session.setAttribute("ssn", info); //세션의 ssn라는 변수에 info를 저장
+		if(session.getAttribute("ssn")!=null) { // ssn가 null이 아니면
 			InfoVO ssn = ((InfoVO) session.getAttribute("ssn"));
 			service.dailycheck(ssn.getEmail());
 			log.info("출석체크 포인트"+ssn.getPoint()+", 로그인 횟수: "+ssn.getLogin_count()+", 현재 날짜: "+ssn.getNow_date());
-			return "redirect:/"; // mainȭ������ �̵�
+			return "redirect:/"; // main화면으로 이동
 		}else {
-			return "redirect:/member/sessionLogin"; //null�̸� �ٽ� �α���ȭ������ �̵�
+			return "redirect:/member/sessionLogin"; //null이면 다시 로그인화면으로 이동ㄴ
 		}
 		
-	}// session�α��� ��
+	}// session로그인 끝
 	
-/*	@PostMapping("dailycheck")// �� �� ���ĺ���?
+/*	@PostMapping("dailycheck")// 좀 더 고쳐보기?
 	public String dailycheck(String email, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String ml = ((InfoVO) session.getAttribute("ssn")).getEmail();
 		service.dailycheck(ml);
 		InfoVO ssn = ((InfoVO) session.getAttribute("ssn"));
-		log.info("�⼮üũ �� ����Ʈ"+ssn.getPoint()+", �⼮üũ �� �α��� Ƚ��: "+ssn.getLogin_count()+", ������ ��¥: "+ssn.getNow_date());
-		return "redirect:/"; // mainȭ������ �̵�
+		log.info("출석체크 후 포인트"+ssn.getPoint()+", 출석체크 후 로그인 횟수: "+ssn.getLogin_count()+", 오늘의 날짜: "+ssn.getNow_date());
+		return "redirect:/"; // main화면으로 이동
 	}*/
 	
-	//�α׾ƿ�
+	//로그아웃
 	@PostMapping("logout")
 	public void logoutPost(HttpSession session) {
 		log.info("로그아웃");
 		session.removeAttribute("ssn");
-		// �Ǵ�, session.invalidate(); -> ��� �Ӽ� ����
+		// 또는, session.invalidate(); -> 모든 속성 제거
 	}
 	
     //member_info.jsp
