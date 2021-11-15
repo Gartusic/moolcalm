@@ -1,0 +1,34 @@
+-- 작가명 길이 수정
+ALTER TABLE moolcalm.product_list 
+CHANGE COLUMN p_author p_author VARCHAR(100) NULL DEFAULT NULL ;
+
+-- p_path
+-- /resources/image/products/green_grass000.jpg
+
+
+-- 제품 insert grass
+INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_info, p_author) VALUES ('green_grass000', '풀', '사진', 10, '/resources/image/products/green_grass000.jpg', '다양한 초록색의 향연이다.', 'Ochir-Erdene Oyunmedeg');
+INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_author) VALUES ('green_grass001', '풀', '사진', 10, '/resources/image/products/green_grass001.jpg', 'Fauzan Saari');
+INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_author) VALUES ('green_grass002', '풀', '사진', 10, '/resources/image/products/green_grass002.jpg',  'CHUTTERSNAP');
+INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_author) VALUES ('green_grass003', '풀', '사진', 10, '/resources/image/products/green_grass003.jpg',  'JuniperPhoton');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
