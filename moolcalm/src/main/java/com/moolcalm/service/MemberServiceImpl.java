@@ -29,10 +29,12 @@ public class MemberServiceImpl implements MemberService{
 		mapper.dailycheck(email);
 	};
 	
+	@Override
 	public void join(InfoVO vo) {	
 		mapper.join(vo);
 	}
-
+	
+	@Override
 	public String find_passCheck(InfoVO vo) {
 		
 		return mapper.find_passCheck(vo); 
@@ -43,6 +45,7 @@ public class MemberServiceImpl implements MemberService{
 		mapper.pass_change(vo);
 	}
 
+	@Override
 	public int email_check(String email) {
         int check = mapper.email_check(email);
         log.info("check="+check);
@@ -56,10 +59,10 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public void info_delete(String email) {
-		mapper.info_delete_r(email);
-		mapper.info_delete_c(email);
+		mapper.remove_fk();
 		mapper.info_delete(email);
-		
+		mapper.reset_fk();
 	}
+
 
 }

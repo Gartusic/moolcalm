@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,60 +31,59 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @RequestMapping("/member")
 public class MemberController {
-	JavaMailSender mailSender;     //¸ŞÀÏ ¼­ºñ½º¸¦ »ç¿ëÇÏ±â À§ÇØ ÀÇÁ¸¼ºÀ» ÁÖÀÔÇÔ.
+	JavaMailSender mailSender;     //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ñ½º¸ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	private MemberService service;
 	
-	//¼¼¼Ç·Î±×ÀÎÅ×½ºÆ®
+	//ï¿½ï¿½ï¿½Ç·Î±ï¿½ï¿½ï¿½ï¿½×½ï¿½Æ®
 	@GetMapping("sessionLogin")
 	public void sessionLoginGet() {
-		log.info("·Î±×ÀÎ È­¸éÀ¸·Î ÀÌµ¿");
+		log.info("ë¡œê·¸ì¸í™”ë©´ìœ¼ë¡œ ì´ë™");
 	}
-	//¼¼¼Ç·Î±×ÀÎ½ÇÇàÅ×½ºÆ®
+	//ï¿½ï¿½ï¿½Ç·Î±ï¿½ï¿½Î½ï¿½ï¿½ï¿½ï¿½×½ï¿½Æ®
 	@PostMapping("sessionLogin")
 	public String sessionLoginPost(InfoVO member, HttpSession session,HttpServletRequest request) {	
-		log.info("·Î±×ÀÎ¼­ºñ½ºÃ³¸®");
+		log.info("ï¿½Î±ï¿½ï¿½Î¼ï¿½ï¿½ï¿½Ã³ï¿½ï¿½");
 		
-		//20211027Ãß°¡ - yuj
+		//20211027ï¿½ß°ï¿½ - yuj
 		 String yuj_email = request.getParameter("email");
         session.setAttribute("email", yuj_email); 
         log.info("yuj_email : "+session.getAttribute("email"));
-        //20211027Ãß°¡ end
+        //20211027ï¿½ß°ï¿½ end
 		
 		
-		//º¯¼ö ¼±¾ğ
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		InfoVO info=service.login(member);
-		//service.login¿¡ member¶ó´Â ¸Å°³º¯¼ö(infoVOÀÇ ³»¿ë)¸¦ ÀúÀåÇÏ´Â info¶ó´Â º¯¼ö
-		session.setAttribute("ssn", info); //¼¼¼ÇÀÇ ssn¶ó´Â º¯¼ö¿¡ info¸¦ ÀúÀå
-		if(session.getAttribute("ssn")!=null) { // ssn°¡ nullÀÌ ¾Æ´Ï¸é
+		//service.loginï¿½ï¿½ memberï¿½ï¿½ï¿½ ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½(infoVOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ infoï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		session.setAttribute("ssn", info); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ssnï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ infoï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		if(session.getAttribute("ssn")!=null) { // ssnï¿½ï¿½ nullï¿½ï¿½ ï¿½Æ´Ï¸ï¿½
 			InfoVO ssn = ((InfoVO) session.getAttribute("ssn"));
 			service.dailycheck(ssn.getEmail());
-			log.info("Ãâ¼®Ã¼Å© ÈÄ Æ÷ÀÎÆ®"+ssn.getPoint()+", Ãâ¼®Ã¼Å© ÈÄ ·Î±×ÀÎ È½¼ö: "+ssn.getLogin_count()+", ¿À´ÃÀÇ ³¯Â¥: "+ssn.getNow_date());
-			return "redirect:/"; // mainÈ­¸éÀ¸·Î ÀÌµ¿
+			log.info("ì¶œì„ì²´í¬ í¬ì¸íŠ¸"+ssn.getPoint()+", ë¡œê·¸ì¸ íšŸìˆ˜: "+ssn.getLogin_count()+", í˜„ì¬ ë‚ ì§œ: "+ssn.getNow_date());
+			return "redirect:/"; // mainÈ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 		}else {
-			return "redirect:/member/sessionLogin"; //nullÀÌ¸é ´Ù½Ã ·Î±×ÀÎÈ­¸éÀ¸·Î ÀÌµ¿
+			return "redirect:/member/sessionLogin"; //nullï¿½Ì¸ï¿½ ï¿½Ù½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 		}
 		
-	}// session·Î±×ÀÎ ³¡
+	}// sessionï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½
 	
-/*	@PostMapping("dailycheck")// Á» ´õ °íÃÄº¸±â?
+/*	@PostMapping("dailycheck")// ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Äºï¿½ï¿½ï¿½?
 	public String dailycheck(String email, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String ml = ((InfoVO) session.getAttribute("ssn")).getEmail();
 		service.dailycheck(ml);
 		InfoVO ssn = ((InfoVO) session.getAttribute("ssn"));
-		log.info("Ãâ¼®Ã¼Å© ÈÄ Æ÷ÀÎÆ®"+ssn.getPoint()+", Ãâ¼®Ã¼Å© ÈÄ ·Î±×ÀÎ È½¼ö: "+ssn.getLogin_count()+", ¿À´ÃÀÇ ³¯Â¥: "+ssn.getNow_date());
-		return "redirect:/"; // mainÈ­¸éÀ¸·Î ÀÌµ¿
+		log.info("ï¿½â¼®Ã¼Å© ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®"+ssn.getPoint()+", ï¿½â¼®Ã¼Å© ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ È½ï¿½ï¿½: "+ssn.getLogin_count()+", ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥: "+ssn.getNow_date());
+		return "redirect:/"; // mainÈ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 	}*/
 	
-	//·Î±×¾Æ¿ô
+	//ï¿½Î±×¾Æ¿ï¿½
 	@PostMapping("logout")
 	public void logoutPost(HttpSession session) {
-		log.info("·Î±×¾Æ¿ô ¼­ºñ½º Ã³¸®");
+		log.info("ë¡œê·¸ì•„ì›ƒ");
 		session.removeAttribute("ssn");
-		// ¶Ç´Â, session.invalidate(); -> ¸ğµç ¼Ó¼º Á¦°Å
+		// ï¿½Ç´ï¿½, session.invalidate(); -> ï¿½ï¿½ï¿½ ï¿½Ó¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
-    
-    
+	
     //member_info.jsp
     @GetMapping("member_info")
 	public void member_info() {
@@ -95,59 +95,59 @@ public class MemberController {
 		log.info("email_check_view");
 	}
     
-	 // mailSending ÄÚµå
-    // mailSending ÄÚµå
+	 // mailSending ï¿½Úµï¿½
+    // mailSending ï¿½Úµï¿½
     @PostMapping("join_check")
     public ModelAndView mailSending( HttpServletRequest request, String email, HttpServletResponse response_email, HttpSession session) throws IOException {
 
         Random r = new Random();
-        int dice = r.nextInt(4589362) + 49311; //ÀÌ¸ŞÀÏ·Î ¹Ş´Â ÀÎÁõÄÚµå ºÎºĞ (³­¼ö)
+        int dice = r.nextInt(4589362) + 49311; //ï¿½Ì¸ï¿½ï¿½Ï·ï¿½ ï¿½Ş´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ ï¿½Îºï¿½ (ï¿½ï¿½ï¿½ï¿½)
         
         String setfrom = "moolcalm.manage5555@gamil.com";
-        String tomail = request.getParameter("email"); // ¹Ş´Â »ç¶÷ ÀÌ¸ŞÀÏ
+        String tomail = request.getParameter("email"); // ï¿½Ş´ï¿½ ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½
                         
-        String title = "È¸¿ø°¡ÀÔ ÀÎÁõ ÀÌ¸ŞÀÏ ÀÔ´Ï´Ù."; // Á¦¸ñ
+        String title = "íšŒì›ê°€ì… ì¸ì¦ ì´ë©”ì¼ ì…ë‹ˆë‹¤."; // ï¿½ï¿½ï¿½ï¿½
         String content =
         
-        System.getProperty("line.separator")+ //ÇÑÁÙ¾¿ ÁÙ°£°İÀ» µÎ±âÀ§ÇØ ÀÛ¼º
+        System.getProperty("line.separator")+ //ï¿½ï¿½ï¿½Ù¾ï¿½ ï¿½Ù°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½
         
         System.getProperty("line.separator")+
                 
-        "¾È³çÇÏ¼¼¿ä È¸¿ø´Ô ÀúÈñ È¨ÆäÀÌÁö¸¦ Ã£¾ÆÁÖ¼Å¼­ °¨»çÇÕ´Ï´Ù"
+        "ì•ˆë…•í•˜ì„¸ìš” íšŒì›ë‹˜ ì €í¬ í™ˆí˜ì´ì§€ë¥¼ ì°¾ì•„ì£¼ì…”ì„œ ê°ì‚¬í•©ë‹ˆë‹¤"
         
         +System.getProperty("line.separator")+
         
         System.getProperty("line.separator")+
 
-        " ÀÎÁõ¹øÈ£´Â " +dice+ " ÀÔ´Ï´Ù. "
+        " ì¸ì¦ë²ˆí˜¸ëŠ” " +dice+ " ì…ë‹ˆë‹¤. "
         
         +System.getProperty("line.separator")+
         
         System.getProperty("line.separator")+
         
-        "¹ŞÀ¸½Å ÀÎÁõ¹øÈ£¸¦ È¨ÆäÀÌÁö¿¡ ÀÔ·ÂÇØ ÁÖ½Ã¸é ´ÙÀ½À¸·Î ³Ñ¾î°©´Ï´Ù."; // ³»¿ë
+        "ë°›ìœ¼ì‹  ì¸ì¦ë²ˆí˜¸ë¥¼ í™ˆí˜ì´ì§€ì— ì…ë ¥í•´ ì£¼ì‹œë©´ ë‹¤ìŒìœ¼ë¡œ ë„˜ì–´ê°‘ë‹ˆë‹¤."; // ï¿½ï¿½ï¿½ï¿½
 
         try {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper messageHelper = new MimeMessageHelper(message,
                     true, "UTF-8");
 
-            messageHelper.setFrom(setfrom); // º¸³»´Â»ç¶÷ »ı·«ÇÏ¸é Á¤»óÀÛµ¿À» ¾ÈÇÔ
+            messageHelper.setFrom(setfrom); // ï¿½ï¿½ï¿½ï¿½ï¿½Â»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ûµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             
             
-            messageHelper.setTo(tomail); // ¹Ş´Â»ç¶÷ ÀÌ¸ŞÀÏ
+            messageHelper.setTo(tomail); // ï¿½Ş´Â»ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½
             
             
-            messageHelper.setSubject(title); // ¸ŞÀÏÁ¦¸ñÀº »ı·«ÀÌ °¡´ÉÇÏ´Ù
-            messageHelper.setText(content); // ¸ŞÀÏ ³»¿ë
+            messageHelper.setSubject(title); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½
+            messageHelper.setText(content); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             
             mailSender.send(message);
         } catch (Exception e) {
            log.info(e);
         }
         
-        ModelAndView mv = new ModelAndView();    //ModelAndView·Î º¸³¾ ÆäÀÌÁö¸¦ ÁöÁ¤ÇÏ°í, º¸³¾ °ªÀ» ÁöÁ¤ÇÑ´Ù.
-        mv.setViewName("/member/email_injeung");     //ºäÀÇÀÌ¸§
+        ModelAndView mv = new ModelAndView();    //ModelAndViewï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+        mv.setViewName("/member/email_injeung");     //ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½
         mv.addObject("dice", dice);
         mv.addObject("email", email);
         
@@ -155,54 +155,47 @@ public class MemberController {
         session.setAttribute("email", tomail);
         
        
-        log.info("¼¼¼Ç¿¡ ÀúÀåµÇ¾î ÀÖ´Â ÀÌ¸ŞÀÏ : "+session.getAttribute("email"));
+        log.info("ï¿½ï¿½ï¿½Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ : "+session.getAttribute("email"));
         
         response_email.setContentType("text/html; charset=UTF-8");
-        // e-mailÀÌ ÀÖÀ¸¸é(È¸¿øÀÌ¶ó´Â ¾ê±â)
-        // ·Î±×ÀÎ È­¸éÀ¸·Î ÀÌµ¿
+        // e-mailï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(È¸ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ ï¿½ï¿½ï¿½)
+        // ï¿½Î±ï¿½ï¿½ï¿½ È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
         if(service.email_check(tomail)==1) {
         	response_email.setContentType("text/html; charset=UTF-8");
         PrintWriter out_equals = response_email.getWriter();
-        out_equals.println("<script>alert('»ç¿ëÇÒ ¼ö ¾ø´Â ÀÌ¸ŞÀÏ ÀÔ´Ï´Ù. ´Ù¸¥ ÀÌ¸ŞÀÏÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.'); history.go(-1);</script>");
+        out_equals.println("<script>alert('ë‹¤ì‹œ í•œ ë²ˆ ë” ì‹œë„í•´ì£¼ì„¸ìš”.'); history.go(-1);</script>");
         out_equals.flush();
-        }else { // e-mailÀÌ ¾øÀ¸¸é(È¸¿øÀÌ ¾Æ´Ï¶ó´Â ¾ê±â) ÀÎÁõ¹øÈ£ ¹ß¼Û È®ÀÎÇÑ ÈÄ È¸¿ø°¡ÀÔ È­¸é¿¡¼­ ºñ¹Ğ¹øÈ£ ÀÔ·Â
+        }else { // e-mailï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(È¸ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï¶ï¿½ï¿½ ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ ï¿½ß¼ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È­ï¿½é¿¡ï¿½ï¿½ ï¿½ï¿½Ğ¹ï¿½È£ ï¿½Ô·ï¿½
             PrintWriter out_email = response_email.getWriter();
-            out_email.println("<script>alert('ÀÌ¸ŞÀÏÀÌ ¹ß¼ÛµÇ¾ú½À´Ï´Ù. ÀÎÁõ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.');</script>");
+            out_email.println("<script>alert('ì¸ì¦ë²ˆí˜¸ê°€ ë°œì†¡ë˜ì—ˆìŠµë‹ˆë‹¤.');</script>");
             out_email.flush();
         }
-        
-        
-        
-
-        
-        
-        
-        
+             
         
         return mv;
         
     }
     
-	//ÀÌ¸ŞÀÏ ÀÎÁõ ÆäÀÌÁö ¸ÊÇÎ ¸Ş¼Òµå
+	//ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ş¼Òµï¿½
 	//@GetMapping("/member/join_check")  //email_injeung
 	//public String email() {
 	//    return "member/email";
 	//}
 
 
-//ÀÌ¸ŞÀÏ·Î ¹ŞÀº ÀÎÁõ¹øÈ£¸¦ ÀÔ·ÂÇÏ°í Àü¼Û ¹öÆ°À» ´©¸£¸é ¸ÊÇÎµÇ´Â ¸Ş¼Òµå.
-//³»°¡ ÀÔ·ÂÇÑ ÀÎÁõ¹øÈ£¿Í ¸ŞÀÏ·Î ÀÔ·ÂÇÑ ÀÎÁõ¹øÈ£°¡ ¸Â´ÂÁö È®ÀÎÇØ¼­ ¸ÂÀ¸¸é È¸¿ø°¡ÀÔ ÆäÀÌÁö·Î ³Ñ¾î°¡°í,
-//Æ²¸®¸é ´Ù½Ã ¿ø·¡ ÆäÀÌÁö·Î µ¹¾Æ¿À´Â ¸Ş¼Òµå
+//ï¿½Ì¸ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÎµÇ´ï¿½ ï¿½Ş¼Òµï¿½.
+//ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½Â´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°¡ï¿½ï¿½,
+//Æ²ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ¿ï¿½ï¿½ï¿½ ï¿½Ş¼Òµï¿½
 @PostMapping("join_injeung{dice}")
 public ModelAndView join_injeung(String email_injeung, @PathVariable String dice, HttpServletResponse response_equals, HttpSession session) throws IOException {
 
         
-    log.info("¸¶Áö¸· : email : "+session.getAttribute("email"));
+    log.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : email : "+session.getAttribute("email"));
     
-    log.info("¸¶Áö¸· : dice : "+dice);
-    log.info("¸¶Áö¸· : email_injeung : "+email_injeung);
+    log.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : dice : "+dice);
+    log.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : email_injeung : "+email_injeung);
     
-    //ÆäÀÌÁöÀÌµ¿°ú ÀÚ·á¸¦ µ¿½Ã¿¡ ÇÏ±âÀ§ÇØ ModelAndView¸¦ »ç¿ëÇØ¼­ ÀÌµ¿ÇÒ ÆäÀÌÁö¿Í ÀÚ·á¸¦ ´ãÀ½
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½Ú·á¸¦ ï¿½ï¿½ï¿½Ã¿ï¿½ ï¿½Ï±ï¿½ï¿½ï¿½ï¿½ï¿½ ModelAndViewï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·á¸¦ ï¿½ï¿½ï¿½ï¿½
      
     ModelAndView mv = new ModelAndView();
     
@@ -212,7 +205,7 @@ public ModelAndView join_injeung(String email_injeung, @PathVariable String dice
     
     if (email_injeung.equals(dice)) {
         
-        //ÀÎÁõ¹øÈ£°¡ ÀÏÄ¡ÇÒ °æ¿ì ÀÎÁõ¹øÈ£°¡ ¸Â´Ù´Â Ã¢À» Ãâ·ÂÇÏ°í È¸¿ø°¡ÀÔÃ¢À¸·Î ÀÌµ¿ÇÔ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½Â´Ù´ï¿½ Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½
         
         
         
@@ -220,12 +213,12 @@ public ModelAndView join_injeung(String email_injeung, @PathVariable String dice
         
        // mv.addObject("email",email);
         
-        //¸¸¾à ÀÎÁõ¹øÈ£°¡ °°´Ù¸é ÀÌ¸ŞÀÏÀ» È¸¿ø°¡ÀÔ ÆäÀÌÁö·Î °°ÀÌ ³Ñ°Ü¼­ ÀÌ¸ŞÀÏÀ»
-        //ÇÑ¹ø´õ ÀÔ·ÂÇÒ ÇÊ¿ä°¡ ¾ø°Ô ÇÑ´Ù.
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ°Ü¼ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½
+        //ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½Ê¿ä°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
         
         response_equals.setContentType("text/html; charset=UTF-8");
         PrintWriter out_equals = response_equals.getWriter();
-        out_equals.println("<script>alert('ÀÎÁõ¹øÈ£°¡ ÀÏÄ¡ÇÏ¿´½À´Ï´Ù. È¸¿ø°¡ÀÔÃ¢À¸·Î ÀÌµ¿ÇÕ´Ï´Ù.');</script>");
+        out_equals.println("<script>alert('ì¸ì¦ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì˜€ìŠµë‹ˆë‹¤. íšŒì›ê°€ì…ì°½ìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤.');</script>");
         out_equals.flush();
 
         return mv;
@@ -240,7 +233,7 @@ public ModelAndView join_injeung(String email_injeung, @PathVariable String dice
         
         response_equals.setContentType("text/html; charset=UTF-8");
         PrintWriter out_equals = response_equals.getWriter();
-        out_equals.println("<script>alert('ÀÎÁõ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö¾Ê½À´Ï´Ù. ÀÎÁõ¹øÈ£¸¦ ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.'); history.go(-1);</script>");
+        out_equals.println("<script>alert('ì¸ì¦ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ì•ŠìŠµë‹ˆë‹¤. ì¸ì¦ë²ˆí˜¸ë¥¼ ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.'); history.go(-1);</script>");
         out_equals.flush();
         
 
@@ -252,58 +245,75 @@ public ModelAndView join_injeung(String email_injeung, @PathVariable String dice
     
 }
 
-		//È¸¿ø°¡ÀÔ get
+		//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ get
 			@GetMapping("join")
 			public void getRegister() throws Exception {
 				log.info("get register");
 			}
 			
-			// È¸¿ø°¡ÀÔ post
+			// È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ post
 			@PostMapping("join")
-			public String postRegister(InfoVO vo) throws Exception {
-				log.info("post register");
+			public String postRegister(InfoVO vo, Model model) throws Exception {
 				
-				service.join(vo);
-				
-				return "redirect:/";
-			}
+		        String result = "";
+		        try {
+		        	log.info("/member/join ï¿½ï¿½Ã»");
+		        	log.info("EMAIL: " + vo.getEmail());
+		        	log.info("PW: " + vo.getPassword());
+		        	log.info("PW2: " + vo.getPassword_again());
+		            
+		            if(vo.getPassword().equals(vo.getPassword_again())){
+		            	service.join(vo);
+		            	log.info("finish register");
+		                result = "redirect:/";
+		            }
+		            else {
+		                result = "/member/join";
+		            }
+		        } catch (Exception e) {
+		        	log.info(e.getMessage());
+		        }
+		        return result;
+		    }
+
+
 			
-		//ºñ¹Ğ¹øÈ£Ã£±â
+		//ï¿½ï¿½Ğ¹ï¿½È£Ã£ï¿½ï¿½
 			@GetMapping("find_password")
 			public void view_find_password() throws Exception {
 				log.info("find_password");
 			}
 
-			 // mailSending ÄÚµå
-		    // mailSending ÄÚµå
+			 // mailSending ï¿½Úµï¿½
+		    // mailSending ï¿½Úµï¿½
 		    @PostMapping("find_password")
 		    public ModelAndView find_password(HttpServletRequest request, String email, HttpServletResponse response_email, HttpSession session) throws IOException {
 
 		        Random r = new Random();
-		        int dice = r.nextInt(4589362) + 49311; //ÀÌ¸ŞÀÏ·Î ¹Ş´Â ÀÎÁõÄÚµå ºÎºĞ (³­¼ö)
+		        int dice = r.nextInt(4589362) + 49311; //ï¿½Ì¸ï¿½ï¿½Ï·ï¿½ ï¿½Ş´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ ï¿½Îºï¿½ (ï¿½ï¿½ï¿½ï¿½)
 		        
 		        String setfrom = "moolcalm.manage5555@gamil.com";
-		        String tomail = request.getParameter("email"); // ¹Ş´Â »ç¶÷ ÀÌ¸ŞÀÏ
-		        String title = "ºñ¹Ğ¹øÈ£Ã£±â ÀÎÁõ ÀÌ¸ŞÀÏ ÀÔ´Ï´Ù."; // Á¦¸ñ
+		        String tomail = request.getParameter("email"); // ï¿½Ş´ï¿½ ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½
+		        String title = "ë¹„ë°€ë²ˆí˜¸ë¥¼ ì°¾ê¸° ìœ„í•œ ì¸ì¦ì´ë©”ì¼ì…ë‹ˆë‹¤."; // ï¿½ï¿½ï¿½ï¿½
 		        String content =
 		        
-		        System.getProperty("line.separator")+ //ÇÑÁÙ¾¿ ÁÙ°£°İÀ» µÎ±âÀ§ÇØ ÀÛ¼º
+		        System.getProperty("line.separator")+ //ï¿½ï¿½ï¿½Ù¾ï¿½ ï¿½Ù°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½
 		        
 		        System.getProperty("line.separator")+
 		                
-		        "¾È³çÇÏ¼¼¿ä È¸¿ø´Ô ºñ¹Ğ¹øÈ£¸¦ Ã£±â À§ÇØ ¾Æ·¡ÀÇ ÀÎÁõ¹øÈ£¸¦ ¾È³»ÇØµå¸³´Ï´Ù"
+		        "ì•ˆë…•í•˜ì„¸ìš” íšŒì›ë‹˜ ì €í¬ í™ˆí˜ì´ì§€ë¥¼ ì°¾ì•„ì£¼ì…”ì„œ ê°ì‚¬í•©ë‹ˆë‹¤"
 		        
 		        +System.getProperty("line.separator")+
 		        
 		        System.getProperty("line.separator")+
 
-		        " ÀÎÁõ¹øÈ£´Â " +dice+ " ÀÔ´Ï´Ù. "
+		        " ì¸ì¦ë²ˆí˜¸ëŠ” " +dice+ " ì…ë‹ˆë‹¤. "
 		        
 		        +System.getProperty("line.separator")+
 		        
 		        System.getProperty("line.separator")+
 		        
-		        "¹ŞÀ¸½Å ÀÎÁõ¹øÈ£¸¦ È¨ÆäÀÌÁö¿¡ ÀÔ·ÂÇØ ÁÖ½Ã¸é ´ÙÀ½À¸·Î ³Ñ¾î°©´Ï´Ù."; // ³»¿ë
+		        "ë°›ìœ¼ì‹  ì¸ì¦ë²ˆí˜¸ë¥¼ í™ˆí˜ì´ì§€ì— ì…ë ¥í•´ ì£¼ì‹œë©´ ë‹¤ìŒìœ¼ë¡œ ë„˜ì–´ê°‘ë‹ˆë‹¤."; // ï¿½ï¿½ï¿½ï¿½
 		        
 		        
 		        try {
@@ -311,31 +321,29 @@ public ModelAndView join_injeung(String email_injeung, @PathVariable String dice
 		            MimeMessageHelper messageHelper = new MimeMessageHelper(message,
 		                    true, "UTF-8");
 
-		            messageHelper.setFrom(setfrom); // º¸³»´Â»ç¶÷ »ı·«ÇÏ¸é Á¤»óÀÛµ¿À» ¾ÈÇÔ
-		            messageHelper.setTo(tomail); // ¹Ş´Â»ç¶÷ ÀÌ¸ŞÀÏ
-		            messageHelper.setSubject(title); // ¸ŞÀÏÁ¦¸ñÀº »ı·«ÀÌ °¡´ÉÇÏ´Ù
-		            messageHelper.setText(content); // ¸ŞÀÏ ³»¿ë
+		            messageHelper.setFrom(setfrom); // ï¿½ï¿½ï¿½ï¿½ï¿½Â»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ûµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		            messageHelper.setTo(tomail); // ï¿½Ş´Â»ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½
+		            messageHelper.setSubject(title); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½
+		            messageHelper.setText(content); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		            
 		            mailSender.send(message);
 		        } catch (Exception e) {
 		           log.info(e);
 		        }
 		        
-		        ModelAndView mv = new ModelAndView();    //ModelAndView·Î º¸³¾ ÆäÀÌÁö¸¦ ÁöÁ¤ÇÏ°í, º¸³¾ °ªÀ» ÁöÁ¤ÇÑ´Ù.
-		        mv.setViewName("member/pw_email_injeung");     //ºäÀÇÀÌ¸§
+		        ModelAndView mv = new ModelAndView();    //ModelAndViewï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+		        mv.setViewName("member/pw_email_injeung");     //ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½
 		        mv.addObject("dice", dice);
 		        
 		        log.info("mv : "+mv);
 		        
 		        session.setAttribute("email", tomail);
-		        log.info("¼¼¼Ç¿¡ ÀúÀåµÇ¾î ÀÖ´Â ÀÌ¸ŞÀÏ : "+session.getAttribute("email"));
+		        log.info("ï¿½ï¿½ï¿½Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ : "+session.getAttribute("email"));
 		        
-		        
-
-		        
+		        		        
 		        response_email.setContentType("text/html; charset=UTF-8");
 		        PrintWriter out_email = response_email.getWriter();
-		        out_email.println("<script>alert('ÀÌ¸ŞÀÏÀÌ ¹ß¼ÛµÇ¾ú½À´Ï´Ù. ÀÎÁõ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.');</script>");
+		        out_email.println("<script>alert('ì¸ì¦ë²ˆí˜¸ê°€ ë°œì†¡ë˜ì—ˆìŠµë‹ˆë‹¤.');</script>");
 		        out_email.flush();
 		        
 		        
@@ -345,28 +353,28 @@ public ModelAndView join_injeung(String email_injeung, @PathVariable String dice
 		        
 		    }
 
-			//ÀÌ¸ŞÀÏ ÀÎÁõ ÆäÀÌÁö ¸ÊÇÎ ¸Ş¼Òµå
+			//ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ş¼Òµï¿½
 			@GetMapping("pw_email_injeung")
 			public String pw_email() {
 			    return "member/pw_email_injeung";
 			}
 
 
-		//ÀÌ¸ŞÀÏ·Î ¹ŞÀº ÀÎÁõ¹øÈ£¸¦ ÀÔ·ÂÇÏ°í Àü¼Û ¹öÆ°À» ´©¸£¸é ¸ÊÇÎµÇ´Â ¸Ş¼Òµå.
-		//³»°¡ ÀÔ·ÂÇÑ ÀÎÁõ¹øÈ£¿Í ¸ŞÀÏ·Î ÀÔ·ÂÇÑ ÀÎÁõ¹øÈ£°¡ ¸Â´ÂÁö È®ÀÎÇØ¼­ ¸ÂÀ¸¸é È¸¿ø°¡ÀÔ ÆäÀÌÁö·Î ³Ñ¾î°¡°í,
-		//Æ²¸®¸é ´Ù½Ã ¿ø·¡ ÆäÀÌÁö·Î µ¹¾Æ¿À´Â ¸Ş¼Òµå
+		//ï¿½Ì¸ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÎµÇ´ï¿½ ï¿½Ş¼Òµï¿½.
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½Â´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°¡ï¿½ï¿½,
+		//Æ²ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ¿ï¿½ï¿½ï¿½ ï¿½Ş¼Òµï¿½
 		@PostMapping("pw_email_injeung{dice}")
 		public ModelAndView pw_email_injeung(String pw_email_injeung, @PathVariable String dice, HttpServletResponse response_equals, HttpSession session) throws IOException {
 
 		    
 		    
 		    
-		    log.info("¸¶Áö¸· : email : "+session.getAttribute("email"));
+		    log.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : email : "+session.getAttribute("email"));
 		    
-		    log.info("¸¶Áö¸· : dice : "+dice);
+		    log.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : dice : "+dice);
 		    
 		    
-		    //ÆäÀÌÁöÀÌµ¿°ú ÀÚ·á¸¦ µ¿½Ã¿¡ ÇÏ±âÀ§ÇØ ModelAndView¸¦ »ç¿ëÇØ¼­ ÀÌµ¿ÇÒ ÆäÀÌÁö¿Í ÀÚ·á¸¦ ´ãÀ½
+		    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½Ú·á¸¦ ï¿½ï¿½ï¿½Ã¿ï¿½ ï¿½Ï±ï¿½ï¿½ï¿½ï¿½ï¿½ ModelAndViewï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·á¸¦ ï¿½ï¿½ï¿½ï¿½
 		     
 		    ModelAndView mv = new ModelAndView();
 		    
@@ -376,7 +384,7 @@ public ModelAndView join_injeung(String email_injeung, @PathVariable String dice
 		    
 		    if (pw_email_injeung.equals(dice)) {
 		        
-		        //ÀÎÁõ¹øÈ£°¡ ÀÏÄ¡ÇÒ °æ¿ì ÀÎÁõ¹øÈ£°¡ ¸Â´Ù´Â Ã¢À» Ãâ·ÂÇÏ°í »õ·Î¿î ºñ¹Ğ¹øÈ£ ÀÔ·ÂÃ¢À¸·Î ÀÌµ¿ÇÔ
+		        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½Â´Ù´ï¿½ Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½Ğ¹ï¿½È£ ï¿½Ô·ï¿½Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½
 		        
 		        
 		        
@@ -384,12 +392,12 @@ public ModelAndView join_injeung(String email_injeung, @PathVariable String dice
 		        
 		        //mv.addObject("email",pw_email_injeung);
 		        
-		        //¸¸¾à ÀÎÁõ¹øÈ£°¡ °°´Ù¸é ÀÌ¸ŞÀÏÀ» È¸¿ø°¡ÀÔ ÆäÀÌÁö·Î °°ÀÌ ³Ñ°Ü¼­ ÀÌ¸ŞÀÏÀ»
-		        //ÇÑ¹ø´õ ÀÔ·ÂÇÒ ÇÊ¿ä°¡ ¾ø°Ô ÇÑ´Ù.
+		        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ°Ü¼ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½
+		        //ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½Ê¿ä°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
 		        
 		        response_equals.setContentType("text/html; charset=UTF-8");
 		        PrintWriter out_equals = response_equals.getWriter();
-		        out_equals.println("<script>alert('ÀÎÁõ¹øÈ£°¡ ÀÏÄ¡ÇÏ¿´½À´Ï´Ù. ÀÔ·ÂÃ¢À¸·Î ÀÌµ¿ÇÕ´Ï´Ù.');</script>");
+		        out_equals.println("<script>alert('ì¸ì¦ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì˜€ìŠµë‹ˆë‹¤. ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ì°½ìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤.');</script>");
 		        out_equals.flush();
 
 		        return mv;
@@ -404,7 +412,7 @@ public ModelAndView join_injeung(String email_injeung, @PathVariable String dice
 		        
 		        response_equals.setContentType("text/html; charset=UTF-8");
 		        PrintWriter out_equals = response_equals.getWriter();
-		        out_equals.println("<script>alert('ÀÎÁõ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö¾Ê½À´Ï´Ù. ÀÎÁõ¹øÈ£¸¦ ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.'); history.go(-1);</script>");
+		        out_equals.println("<script>alert('ì¸ì¦ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ì•ŠìŠµë‹ˆë‹¤. ì¸ì¦ë²ˆí˜¸ë¥¼ ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.'); history.go(-1);</script>");
 		        out_equals.flush();
 		        
 
@@ -416,13 +424,12 @@ public ModelAndView join_injeung(String email_injeung, @PathVariable String dice
 		    
 		}
 		
-		//»õ·Î¿î ºñ¹Ğ¹øÈ£ ÀÔ·Â ÆäÀÌÁö ¸ÊÇÎ ¸Ş¼Òµå
+		//ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½Ğ¹ï¿½È£ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ş¼Òµï¿½
 		@GetMapping("new_password")
 		public void pw_new_password()  throws Exception{
 			log.info("new_password");
 		} 
-		
-		// »õ·Î¿î ºñ¹Ğ¹øÈ£ ÀÔ·Â
+		// ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½Ğ¹ï¿½È£ ï¿½Ô·ï¿½
 		@PostMapping("new_password")
 		public String pass_change(InfoVO vo) throws Exception {
 			log.info("pass_change");
@@ -432,15 +439,14 @@ public ModelAndView join_injeung(String email_injeung, @PathVariable String dice
 			return "redirect:/member/sessionLogin";
 		}
 		
-
 		//*********************************************************
-		//È¸¿øÁ¤º¸ »õ·Î¿î ºñ¹Ğ¹øÈ£ ÀÔ·Â ÆäÀÌÁö ¸ÊÇÎ ¸Ş¼Òµå
+		//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½Ğ¹ï¿½È£ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ş¼Òµï¿½
 		@GetMapping("info_new_password")
 		public void info_pw_new_password()  throws Exception{
 			log.info("info_new_password");
 		} 
 				
-		// »õ·Î¿î ºñ¹Ğ¹øÈ£ ÀÔ·Â
+		// ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½Ğ¹ï¿½È£ ï¿½Ô·ï¿½
 		@PostMapping("info_new_password")
 		public String info_pass_change(InfoVO vo) throws Exception {
 			log.info("info_pass_change");
@@ -451,25 +457,23 @@ public ModelAndView join_injeung(String email_injeung, @PathVariable String dice
 		}
 		
 		
-		//È¸¿øÅ»Åğ
+		
+		//È¸ï¿½ï¿½Å»ï¿½ï¿½
 		@PostMapping("info_delete")
 		public String info_delete(HttpServletRequest request, HttpSession session,  HttpServletResponse response) throws IOException, ServletException {			 			
 	        	
 			try {
 				response.setContentType("text/html; charset=UTF-8");
 	        	PrintWriter All_removed = response.getWriter();
-	        	All_removed.println("<script>alert('Å»ÅğµÇ¾ú½À´Ï´Ù. ')</script> </script>");	        	
+	        	All_removed.println("<script>alert('íƒˆí‡´ë˜ì—ˆìŠµë‹ˆë‹¤. ')</script> </script>");	        	
 	        	//;history.forward(); location.replace=('http://localhost:8080/');
 	        	All_removed.flush();
 
-	      
-				log.info("login email="+(String)session.getAttribute("email"));	
-				String email = (String)session.getAttribute("email");
-				
-				service.info_delete(email);
-				//session.removeAttribute("email");
-				//session.removeAttribute("ssn");
-				//session.invalidate();
+	        	
+				log.info("login email="+(String)session.getAttribute("email"));			
+				service.info_delete((String)session.getAttribute("email"));
+				session.removeAttribute("email");
+				session.removeAttribute("ssn");
 				
 				log.info("bye");
 				
@@ -480,6 +484,7 @@ public ModelAndView join_injeung(String email_injeung, @PathVariable String dice
 			return "main";
 	    
 		}
+			
 		
 	
 }

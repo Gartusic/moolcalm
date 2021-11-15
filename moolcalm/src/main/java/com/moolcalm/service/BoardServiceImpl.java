@@ -17,25 +17,25 @@ import lombok.extern.log4j.Log4j;
 public class BoardServiceImpl implements BoardService {
 	private BoardMapper mapper;
 
+	@Override
 	public void register(R_configVO r_config) {
 		log.info("register...."+r_config);
 		mapper.insertSelectKey(r_config);		
 	}	
-
+	@Override
 	public R_configVO get(long r_num) {
 		log.info("getregister...."+r_num);
 		return mapper.read(r_num);}
-
+	@Override
 	public boolean modify(R_configVO r_config) {
 		log.info("modify...."+r_config);
 		return mapper.update(r_config)==1;}
-
+	@Override
 	public boolean remove(long r_num) {
 		log.info("remove...."+r_num);		
 		return mapper.delete(r_num)==1;}
 
 	@Override
-
 	public List<R_configVO> getList(Criteria cri) {
 	log.info("getList........");
 	return mapper.getListWithPaging(cri);

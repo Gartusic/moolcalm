@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 body{
-  background-color: lightblue;
+  background-color: rgb(230, 241, 245);
 }
 
 h2{
@@ -27,9 +27,8 @@ summary,
   line-height: 1.4em;
 }
 
-.info_list ul a:hover{
+.info_list ul li:hover{
   font-weight: bold;
-  color: rgb(237, 237, 237);
 
   border-radius: 5px;
   border: 1px solid rgb(237, 237, 237);

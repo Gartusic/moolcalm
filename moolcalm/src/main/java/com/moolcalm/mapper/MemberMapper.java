@@ -28,7 +28,7 @@ public interface MemberMapper {
    
     public List<InfoVO> member_profile();    //회원의 프로필 정보를 확인할 수 있는 메소드
 
-    public void info_delete_r(String email);
-    public void info_delete_c(String email);
     public void info_delete(String email);  //회원탈퇴
+    public void remove_fk();  //회원탈퇴
+    public void reset_fk();  //회원탈퇴
 }

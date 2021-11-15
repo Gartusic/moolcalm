@@ -32,109 +32,98 @@ public class ProductController {
 	@Autowired
 	ProductService service;
 
-	// ÀüÃ¼ ¸ñ·Ï ¶ç¿ì±â
-	// GET MappingÀ» »ç¿ëÇÏ¸é µÈ´ç
-	// URL : http://localhost:8080/board/list ¸¦ ½ÇÇàÇÏ¸é ¾Æ·¡ ³»¿ëÀÌ Ç¥Ãâ
+	// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// GET Mappingï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½È´ï¿½
+	// URL : http://localhost:8080/board/list ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Æ·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
 	@RequestMapping(value = "p_list", method = RequestMethod.GET)
 	public void list(Model model) {
 		log.info("list");
-		// "¹è¿­¸í", selectµÈ °á°ú¹°
+		// "ï¿½è¿­ï¿½ï¿½", selectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 		model.addAttribute("list", service.getList());
 	}
 
 	@GetMapping("/p_detail")
 	public void read(String p_setname, Model model) {
 		log.info("read" + p_setname);
-		// ¼¿·ºÆ® ¿©·¯°³ ÇØ¾ßµÉ¶§´Â ÀÌ·±½ÄÀ¸·Î ¸ğµ¨ °è¼Ó Ãß°¡ÇÏ¸é µË´Ï´Ù.?
+		// ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ßµÉ¶ï¿½ï¿½ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï¸ï¿½ ï¿½Ë´Ï´ï¿½.?
 		model.addAttribute("read", service.read(p_setname));
 		model.addAttribute("readList", service.readList(p_setname));
 		model.addAttribute("readProductCount", service.readProductCount(p_setname));
 	}
 
-	// ±¸¸Å ±â´É
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 //	@PostMapping("/buy")
 //	public String buy(InfoVO email, ProductVO p_name, HttpServletRequest request) {
 //		HttpSession session = request.getSession();
 //		System.out.println(email);
-//		if (session.getAttribute("ssn") != null) { // ssn°¡ nullÀÌ ¾Æ´Ï¸é
+//		if (session.getAttribute("ssn") != null) { // ssnï¿½ï¿½ nullï¿½ï¿½ ï¿½Æ´Ï¸ï¿½
 //			email = (InfoVO) session.getAttribute("ssn");
-//			log.info("±¸¸Å Á¤º¸: " + session + "," + email.getEmail() + "," + p_name.getP_name());
+//			log.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: " + session + "," + email.getEmail() + "," + p_name.getP_name());
 //			service.buy(email, p_name);
-//			return "redirect:/products/p_list"; // mainÈ­¸éÀ¸·Î ÀÌµ¿
+//			return "redirect:/products/p_list"; // mainÈ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 //		} else {
-//			return "redirect:/member/sessionLogin"; // nullÀÌ¸é ´Ù½Ã ·Î±×ÀÎÈ­¸éÀ¸·Î ÀÌµ¿
+//			return "redirect:/member/sessionLogin"; // nullï¿½Ì¸ï¿½ ï¿½Ù½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 //		}
 //	}
 	
 	@PostMapping("/buy")
 	public String buy(String p_name, HttpServletRequest request, HttpServletResponse response, Model model) throws IOException, ServletException{
-		// sessionÀº ±âº»ÀûÀ¸·Î HttpSevletRequest¿¡¼­ µ¹¾Æ´Ù´Ï¹Ç·Î °Å±â¼­ °¡Á®¿Í¼­ ¾²´Â¹æ¹ıÀÌ °¡Àå ¾ÈÀüÇÔ
+		// sessionï¿½ï¿½ ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ HttpSevletRequestï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ´Ù´Ï¹Ç·ï¿½ ï¿½Å±â¼­ ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ ï¿½ï¿½ï¿½Â¹ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		HttpSession session = request.getSession();
-		// ÀÌ·¸°Ô ÇÏ¸é µÊ °ÅÀÇ
-		System.out.println(session.getAttribute("ssn"));
-		// ºñ¹øÀº ±»ÀÌ ¼¼¼Ç¿¡ ÀúÀå ¾È½ÃÅ°´Â°Ô ÁÁ¾Æ¿ë
+		System.out.println("buy!!!~~");
+		// ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½Ï¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		//System.out.println(session.getAttribute("ssn"));
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½È½ï¿½Å°ï¿½Â°ï¿½ ï¿½ï¿½ï¿½Æ¿ï¿½
 		
-		//¾Ë¸²Ã¢ ¶ç¿ï ÁØºñ,,
+		//ï¿½Ë¸ï¿½Ã¢ ï¿½ï¿½ï¿½ ï¿½Øºï¿½,,
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter Alert = response.getWriter();
         
-        // ·Î±×ÀÎÀÌ µÇ¾î ÀÖÀ» ¶§
+        // ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 		if(session.getAttribute("ssn") != null) {
-			// Å¸ÀÔ ÁöÁ¤ÈÄ
+			// Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			CollectionVO col = new CollectionVO();
 			
-			// ½ºÆ®¸µÀ¸·Î °¡Á®¿À¸é µÇ´Ï
+			// ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½
 			String email = ((InfoVO) session.getAttribute("ssn")).getEmail();
 				
-			// ³Ö¾îÁÖ°í
+			// ï¿½Ö¾ï¿½ï¿½Ö°ï¿½
 			col.setEmail(email);
 			col.setP_name(p_name);
             
 			
-			int point = 10; // ÀÓ½Ã °ª
+			int point = 10; // ï¿½Ó½ï¿½ ï¿½ï¿½
 //			int point = service.readList().getPoint();
-			// »óÇ°ÀÌ Áßº¹µÇÁö ¾ÊÀ¸¸é
+			// ï¿½ï¿½Ç°ï¿½ï¿½ ï¿½ßºï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			if(service.product_check(col)!= 1) {
 			
-				log.info("±¸¸Å ¼º°ø");
-				// ºü»ş, ±¸¸ÅÇÏ±â
+				log.info("aaaaaaa");
+				// ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 				service.buy(col);
 				
-				Alert.println("<script>alert('±¸¸Å ¼º°ø!')</script>");              
-	              Alert.flush(); // ÃÊ±âÈ­
-				// ±×¸®°í ¹°Ç°À» »ç¸é ±× ¹°Ç°ÀÇ °¹¼öµµ ÁÙ¾î¾ß°ÚÁÒ?
-				// ¿©±â´Ù°¡ ³ÖÀ»¼ö ÀÖÀ¸¸é ÁÁ°Ú³×¿ä ÆÄÀÌÆÃ!
+				Alert.println("<script>alert('êµ¬ë§¤ ì„±ê³µ!')</script>");              
+	              Alert.flush(); // ï¿½Ê±ï¿½È­
 	              service.minusPoint(point, email);
-	              log.info("±¸¸Å ¼º°ø : "+point+","+email);
+	              log.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : "+point+","+email);
 	              model.addAttribute("list", service.getList());
-				// ¼º°øÀûÀ¸·Î ³¡³µÀ» ÅÍÀÌ´Ï ¸®½ºÆ®·Î
-				return "/products/p_list"; // ¾Ë¸²°ú ¸®´ÙÀÌ·ºÆ®´Â Ãæµ¹µÇ±â¶§¹®¿¡ °°ÀÌ ¾²¸é ¾ÈµË´Ï´ç ¤·¤µ¤·
-			} else {
-				log.info("Áßº¹µÇ´Â »óÇ° ¹ß°ß");
-				// ¾Ë¸²Ã¢ ¶ç¿ì±â
-	            Alert.println("<script>alert('ÀÌ¹Ì ±¸¸ÅÇÏ½Å »óÇ°ÀÔ´Ï´Ù.')</script>");              
-	              Alert.flush(); // ÃÊ±âÈ­
 
+				return "/products/p_list";
+			} else {
+	            Alert.println("<script>alert('ì´ë¯¸ êµ¬ë§¤í•˜ì‹  ìƒí’ˆì…ë‹ˆë‹¤.')</script>");              
+	              Alert.flush(); // ï¿½Ê±ï¿½È­
 	              model.addAttribute("list", service.getList());
 				return "products/p_list";
-				// Alert´Â @ResponseBody Ãß°¡ ÈÄ ½ÇÇà °¡´ÉÇÔ
-				/*String errmsg = "";
-				errmsg = "<script>alert('º¸°üÇÔ¿¡ Áßº¹µÇ´Â »óÇ°ÀÌ ÀÖ½À´Ï´Ù.');location.href='redirect:/products/p_detail'</script>";
-				return errmsg;*/
-				// Áö±İÀº postMappingÀÌ¶ó¼­ ¾È¸ÔÈ÷³ª?½Í´Ù. ¿Ö¾ÈµÇ´ÂÁö ¸ğ¸£°ÙÀ½;
 			}
-			
-
 		}
-		log.info("·Î±×ÀÎ ¸ÕÀú ÇÏ¼¼¿ä");
-		// ¾Æ´Ï¸é °Á ·Î±×ÀÎ Ã¢À¸·Î º¸³»¸é µÇ°ÚÁÒ?
+		log.info("ë¡œê·¸ì¸ í•˜ì„¸ìš”");
+		// ï¿½Æ´Ï¸ï¿½ ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç°ï¿½ï¿½ï¿½?
 		return "redirect:/member/sessionLogin";
 		
 	}
 	
-	// RestController´Â ±âÁ¸ÀÇ Controller¸¦ ´õ ¿¬½ÀÇÏ°í ÇÏ¸é Á» Àç¹ÕÀ»°Å¿¡¿ë
-	// ³ªÁß¿¡ º¸°í ³ª¸é ½Å¼¼°èÀÔ´Ï´Ù ¤¾¤¾
-	// ÇÏ°Ô µÈ´Ù¸é ±âÃÊ ¾Ë·Áµå¸±°Ô¿ë
-	// get, post, put, delete ´Ù ´Ş¶ó¼­¿ë
+	// RestControllerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Controllerï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ï¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¿ï¿½ï¿½ï¿½
+	// ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å¼ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// ï¿½Ï°ï¿½ ï¿½È´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë·ï¿½ï¿½å¸±ï¿½Ô¿ï¿½
+	// get, post, put, delete ï¿½ï¿½ ï¿½Ş¶ó¼­¿ï¿½
 
 }

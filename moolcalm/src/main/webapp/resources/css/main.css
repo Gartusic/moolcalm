@@ -62,7 +62,7 @@ body{
 	border-radius: 20px;
     width: 45px;
     height: 45px;
-    background-color: rgb(247, 192, 247);
+    background-color: transparent;
     border:0;
 	position:absolute;
 	bottom:0;

@@ -30,49 +30,57 @@ public class BoardController {
 	@GetMapping("t_table")
 	public void list(Model model, Criteria cri) {
 		log.info("list");
-		//                  ¹è¿­ÀÌ¸§, selectµÈ °á°ú¹°
+		//                  ï¿½è¿­ï¿½Ì¸ï¿½, selectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 		model.addAttribute("list", service.getList(cri));
 		int total=service.getTotalCount(cri);
 		model.addAttribute("PageMaker", new PageDTO(cri,total));
 	}
 		
-	//±Û¾²±â È­¸éÀ¸·Î ÀÌµ¿ÇÏ±â À§ÇØ ¸¸µê
+	//ï¿½Û¾ï¿½ï¿½ï¿½ È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@GetMapping("t_write")
 	public void register() {	
 		log.info("register");
 	}
-	//±Û¾²±â È­¸é¿¡¼­ ±Û¾²±â ¹öÆ°À» Å¬¸¯ÇßÀ» ¶§ Á¦¸ñ, ³»¿ë, ÀÛ¼ºÀÚ¸¦ Ã³¸®ÇÏ±â À§ÇØ Á¸Àç.
+	//ï¿½Û¾ï¿½ï¿½ï¿½ È­ï¿½é¿¡ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½, ï¿½Û¼ï¿½ï¿½Ú¸ï¿½ Ã³ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	@PostMapping("t_write")
 	
-	//¸®ÅÏÅ¸ÀÔ ¸Ş¼Òµå¸í             (Å¸ÀÔ º¯¼ö¸í)
+	//ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½Ş¼Òµï¿½ï¿½             (Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 	//void add            (int a)
 	public String registerPost(R_configVO R_config, RedirectAttributes rttr, HttpServletResponse response) throws IOException {	
 		log.info("register = " + R_config);
-		service.register(R_config); //±Û¾²±â ÇÑ ÈÄ
+		service.register(R_config); //ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
 		rttr.addAttribute("r_num", R_config.getR_num());
 		
 		response.setContentType("text/html; charset=UTF-8");
     	PrintWriter board_register = response.getWriter();
-    	board_register.println("<script>alert('°ü¸®ÀÚ¿¡°Ô ÀÇ°ßÀÌ Àü¼ÛµÇ¾ú½À´Ï´Ù. ')</script>");	        	
+    	board_register.println("<script>alert('ê´€ë¦¬ìì—ê²Œ ì˜ê²¬ì´ ì „ë‹¬ë˜ì—ˆìŠµë‹ˆë‹¤. ')</script>");	        	
     	board_register.flush();		
 		
-		return "member/member_info"; //board/read.jspÈ­¸éÀÌµ¿.
+		return "member/member_info"; //board/read.jspÈ­ï¿½ï¿½ï¿½Ìµï¿½.
 	}
-	//¼öÁ¤È­¸éÀ¸·Î ÀÌµ¿(modify.jsp)À» À§ÇØ ÀÛ¼º
-	@GetMapping("t_writemodify")
+	//ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½(modify.jsp)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½
+	@GetMapping("modify")
 	public void modifyGet(long r_num, Model model) {
 		log.info("modify");
 		model.addAttribute("modify", service.get(r_num));
 	}
-	// ±Û¼öÁ¤ È­¸é¿¡¼­ ±Û¼öÁ¤ ¹öÆ°À» Å¬¸¯ÇßÀ» ¶§ Á¦¸ñ, ³»¿ëÀ» Ã³¸®ÇÏ±â À§ÇØ.
+	// ï¿½Û¼ï¿½ï¿½ï¿½ È­ï¿½é¿¡ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	@PostMapping("modify")
-	public String modifyPost(R_configVO R_config, RedirectAttributes rttr, Model model) {
-		log.info("modifyPost"+R_config);
-		model.addAttribute("result", service.modify(R_config));
+	public String modifyPost(R_configVO R_config, RedirectAttributes rttr, HttpServletResponse response) throws IOException {		
+		service.modify(R_config);	
 		rttr.addAttribute("r_num", R_config.getR_num());
-		return "redirect:/board/t_writemodify";
+		
+		
+		log.info("modifyPost"+R_config);
+		
+		response.setContentType("text/html; charset=UTF-8");
+    	PrintWriter board_register = response.getWriter();
+    	board_register.println("<script>alert('ê¸€ì´ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤. ')</script>");
+    	board_register.flush();	
+		
+		return "member/member_info";
 	}
-	@GetMapping("remove")
+	@GetMapping("remove")	
 	public String remove(long r_num) {
 		log.info("remove"+r_num);
 		service.remove(r_num);
