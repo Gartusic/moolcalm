@@ -30,6 +30,17 @@ INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p
 INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_author) VALUES ('small_chipmunk002', '다람쥐', '사진', 10, '/resources/image/products/small_chipmunk002.jpg', 'Kayleigh Nemeth');
 INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_author) VALUES ('small_chipmunk003', '다람쥐', '사진', 10, '/resources/image/products/small_chipmunk003.jpg', 'Matthieu Pétiard');
 
+-- 제품 field_wildflowers
+INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_info, p_author) VALUES ('field_wildflowers000', '들꽃', '사진', 10, '/resources/image/products/field_wildflowers000.jpg', '소곤소곤 모임날의 수다', 'Zane Priedīte');
+INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_author) VALUES ('field_wildflowers001', '들꽃', '사진', 10, '/resources/image/products/field_wildflowers001.jpg', 'tsuyoshi kozu');
+INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_author) VALUES ('field_wildflowers002', '들꽃', '사진', 10, '/resources/image/products/field_wildflowers002.jpg', 'Emiel Maters');
+INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_author) VALUES ('field_wildflowers003', '들꽃', '사진', 10, '/resources/image/products/field_wildflowers003.jpg', 'Marina Reich');
+
+-- 제품
+
+
+
+
 
 
 
