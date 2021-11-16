@@ -25,10 +25,10 @@ INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p
 INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_author) VALUES ('drop the rain003', '비', '사진', 10, '/resources/image/products/drop the rain003.jpg', 'Filip Zrnzević');
 
 -- 제품 small_chipmunk
-
-
-
-
+INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_info, p_author) VALUES ('small_chipmunk000', '다람쥐', '사진', 10, '/resources/image/products/small_chipmunk000.jpg', '땡글땡글한 눈망울', 'Richard Hamilton');
+INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_author) VALUES ('small_chipmunk001', '다람쥐', '사진', 10, '/resources/image/products/small_chipmunk001.jpg', 'alex lauzon');
+INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_author) VALUES ('small_chipmunk002', '다람쥐', '사진', 10, '/resources/image/products/small_chipmunk002.jpg', 'Kayleigh Nemeth');
+INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_author) VALUES ('small_chipmunk003', '다람쥐', '사진', 10, '/resources/image/products/small_chipmunk003.jpg', 'Matthieu Pétiard');
 
 
 
