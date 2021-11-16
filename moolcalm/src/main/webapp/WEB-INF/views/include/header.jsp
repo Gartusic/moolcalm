@@ -13,10 +13,9 @@
 	<!-- 아이콘 부트스트랩 -->
 	<!-- icons bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" integrity="sha384-7ynz3n3tAGNUYFZD3cWe5PDcE36xj85vyFkawcF6tIwxvIecqKvfwLiaFdizhPpN" crossorigin="anonymous">
-    
+	<link rel="stylesheet" href="${path}/resources/css/reset.css">    
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/style.css">
 
-    <link rel="stylesheet" href="${path}/resources/css/reset.css">
     <link rel="stylesheet" href="${path}/resources/css/login.css">
     
     

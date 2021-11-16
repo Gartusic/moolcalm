@@ -4,7 +4,7 @@
 	margin:0;
 }
 #wrap_p_detail{
-	margin: 30px;
+	margin: 20px;
 }
 
 .s_drop li{
@@ -63,18 +63,21 @@
 }
     
 .p_cardRow .card{
-    height: 45vh;
-    width: 45vw;
-    overflow: hidden;
-}
-.p_cardRow .card-img-top{
-    height: 50%;
-}
-.p_cardRow .col-6{
-    margin-bottom: 20px;
+    max-height:400px;
+    max-width:600px;
+    margin: auto;
     
 }
+.p_cardRow .card-img-top{
+    max-height: 200px;
+    overflow:hidden;
+    object-fit: cover;
+}
 
+.p_cardRow .col-6{
+	padding-bottom:20px;
+    margin-bottom: 20px;
+}
 
 /*p_detail*/
 div.d_top{
@@ -110,4 +113,18 @@ div.d_top{
 	font-size:18px;
 	line-height:30px;
 	border-bottom:1px solid #bbb;
+}
+
+
+/* pc화면 */
+@media screen and (min-width:1200px) {
+	
+	#wrap_p_detail{
+		max-width:1500px;
+		margin: 40px;
+	}
+
+	.p_cardRow{
+    	padding-top: 40px;
+    }
 }

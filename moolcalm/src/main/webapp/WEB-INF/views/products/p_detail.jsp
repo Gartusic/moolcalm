@@ -4,7 +4,8 @@
 	<%@include file="../include/header.jsp"%>
 	<div id="wrap_p_detail">
         <div class="d_top">
-        <h3>상세 페이지</h3>
+        	<h3>상세 페이지</h3>
+        	<a class="navbar-brand p_logo" href="/">logo</a>
             <a href="/products/p_list" class="p_prev"><i class="bi bi-arrow-90deg-left" title="뒤로"></i></a>
         </div>
         <figure class="figure">

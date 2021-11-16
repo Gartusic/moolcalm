@@ -22,5 +22,10 @@ public class CollectionServiceImpl implements CollectionService{
 	public List<ProductVO> getMyList(String email){
 		log.info("getMyList");
 		return mapper.getMyList(email);
-	};
+	}
+	@Override
+	public List<ProductVO> c_detail(String p_name,String email){
+		log.info("c_detail view");
+		return mapper.c_detail(p_name,email);
+	}
 }

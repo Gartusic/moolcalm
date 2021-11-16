@@ -131,9 +131,5 @@ public class ProductController {
 		
 	}
 	
-	// RestController는 기존의 Controller를 더 연습하고 하면 좀 재밌을거에용
-		// 나중에 보고 나면 신세계입니다 ㅎㅎ
-		// 하게 된다면 기초 알려드릴게용
-		// get, post, put, delete 다 달라서용
 
 	}

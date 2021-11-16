@@ -145,7 +145,7 @@ var flakeCnt;var delta_x=new Array(),delta_y=new Array();var move_x=new Array(),
 	            		</c:when>
 	            		<c:otherwise>
 	            		<li class="m_mypageBtn"><a href="/member/member_info"><i class="bi bi-gear-fill" title="MyPage"></i></a></li>
-	            		<li class="m_mypageBtn"><a href="/products/myCollection"><i class="bi bi-suit-heart-fill" title="MyCollection"></i></a></li>
+	            		<li class="m_mypageBtn"><a href="/collections/myCollection"><i class="bi bi-suit-heart-fill" title="MyCollection"></i></a></li>
 	            		<li class="m_logoutBtn"><a><form action="/member/logout" method="post"><button type="submit"><i class="bi bi-box-arrow-right" title="logout"></i></button></form></a></li>
 	            		</c:otherwise>
 	            	</c:choose>

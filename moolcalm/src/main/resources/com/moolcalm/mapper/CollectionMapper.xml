@@ -5,18 +5,28 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.moolcalm.mapper.CollectionMapper">
 
-<!--  -->
+<!-- 구매내역 보관함 목록에서 해당 컬렉션 구매여부 확인하기-->
+<!-- <select id="identifyMyList" resultType="int">
+select count(*) count from collection_list c left join product_list p on c.p_name=p.p_name
+where p.p_setname=#{p_setname} and c.email= #{email}
+</select> -->
+
+<!-- 구매내역 조회 -->
 <select id="getMyList" resultType="com.moolcalm.domain.ProductVO">
-select c.*, p.* from collection_list c left join product_list p on c.p_name=p.p_name
-where c.email = #{email} and p.p_name like '%001';
+	select *
+	from product_list p
+	join collection_list c
+	where p.p_name=c.p_name
+	and c.email=#{email};
 </select>
 
-
-<!--
-<select id="getMyList" resultType="com.moolcalm.domain.ProductVO">
-select c.*, p.* from collection_list c left join product_list p on c.p_name=p.p_name
-where c.email = #{email} and p_setname=#{p_setname} and c.p_name like '%001';
+<select id="c_detail" resultType="com.moolcalm.domain.ProductVO">
+	select p_name,p_setname,p_author,p_type,p_path,p_info
+	from product_list p
+	natural join collection_list c
+	where p.p_name=c.p_name
+	and p.p_name=#{p_name}
+	and c.email=#{email}
 </select>
- -->
 
 </mapper>

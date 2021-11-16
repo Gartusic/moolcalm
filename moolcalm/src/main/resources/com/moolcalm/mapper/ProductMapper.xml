@@ -8,7 +8,7 @@
 <!-- 모음집 목록 생성 -->
  	<select id="getList" resultType="com.moolcalm.domain.ProductVO">
     	select p_setname,p_path,p_author from product_list
-    	where p_name like '%001'
+    	where p_name like '%000'
 	</select>
 	
 	
@@ -31,11 +31,11 @@
   	
   	<!-- 모음집 상세페이지 생성 -->
 	 <select id="read" resultType="com.moolcalm.domain.ProductVO">
-  select * from product_list where p_setname=#{p_setname} and p_name like '%001'
+  select * from product_list where p_setname=#{p_setname} and p_name like '%000'
   </select>
   <!-- 상품 낱개 리스트 생성 -->
   <select id="readList" resultType="com.moolcalm.domain.ProductVO">
-  	select p_name from product_list where p_setname = #{p_setname} order by p_name asc
+  	select p_name from product_list where p_setname = #{p_setname} and p_name not like '%000'order by p_name asc
   </select>
   
   <!-- 상품 전체 갯수, 전체 가격, 낱개 가격 출력 -->
