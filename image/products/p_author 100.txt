@@ -12,10 +12,19 @@ INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p
 INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_author) VALUES ('green_grass002', '풀', '사진', 10, '/resources/image/products/green_grass002.jpg',  'CHUTTERSNAP');
 INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_author) VALUES ('green_grass003', '풀', '사진', 10, '/resources/image/products/green_grass003.jpg',  'JuniperPhoton');
 
+-- 제품 insert only_drop
+INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_info, p_author) VALUES ('only_drop000', '물방울', '사진', 10, '/resources/image/products/only_drop000.jpg', '한방울의 소중함.', 'Erda Estremera');
+INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_author) VALUES ('only_drop001', '물방울', '사진', 10, '/resources/image/products/only_drop001.jpg', 'ANIRUDH');
+INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_author) VALUES ('only_drop002', '물방울', '사진', 10, '/resources/image/products/only_drop002.jpg', 'César Couto');
+INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_author) VALUES ('only_drop003', '물방울', '사진', 10, '/resources/image/products/only_drop003.jpg', 'David Becker');
 
+-- 제품 insert drop the rain
+INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_info, p_author) VALUES ('drop the rain000', '비', '사진', 10, '/resources/image/products/drop the rain000.jpg', '시원한 하루.', 'Osman Rana');
+INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_author) VALUES ('drop the rain001', '비', '사진', 10, '/resources/image/products/drop the rain001.jpg', 'Anna Atkins');
+INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_author) VALUES ('drop the rain002', '비', '사진', 10, '/resources/image/products/drop the rain002.jpg', 'Danielle Dolson');
+INSERT INTO moolcalm.product_list (p_name, p_setname, p_type, p_price, p_path, p_author) VALUES ('drop the rain003', '비', '사진', 10, '/resources/image/products/drop the rain003.jpg', 'Filip Zrnzević');
 
-
-
+-- 제품 small_chipmunk
 
 
 
