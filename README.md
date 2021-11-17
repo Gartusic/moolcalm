@@ -23,4 +23,4 @@ MySQL 8.0
 > * 심플하고 접근성 있는 UI
 > * 사용자 참여형 컨텐츠
 
-자세한 설명은 : https://www.miricanvas.com/v/1o817b
+자세한 설명은.. : https://www.miricanvas.com/v/1o817b
